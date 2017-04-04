@@ -92,7 +92,7 @@ router.get('/analytic', (req, res, next) => {
 		series : series,
 		data : []
 	};
-	Data.find({"nid" : "58e32f3cb7b33f32e4b25271", created : {"$gte": new Date(+start), "$lt": new Date(+end)}}, fields, 
+	Data.find({"nid" : nodeId, created : {"$gte": new Date(+start), "$lt": new Date(+end)}}, fields, 
 	{
 		sort: {
 			created : -1
@@ -117,17 +117,28 @@ router.get('/analytic', (req, res, next) => {
 
 
 router.get('/node/:id', (req, res, next) => {
-	Node.findOne({"_id" : new ObjectId(req.params.id)} , (e,r) => {
+	// console.log(req.params)
+	Node.findById(req.params.id , (e,r) => {
+		// console.log(e,r)
 		if (e) return res.json({success : false, msg : e});
 
-		for (i in r.component) {
-			Sensor.findOne({"_id" : new ObjectId(r.component[i])}, (er, rr) => {
+		// console.log(Object.keys(r.component))
+		// console.log(JSON.stringify(r.component));
+		var obj = JSON.parse(JSON.stringify(r));
+		for (i in obj.component) {
+			// console.log(i)
+			Sensor.findById(obj.component[i], (er, rr) => {
+				// console.log(obj, i)
 				if (!er && rr) {
-					r.component[i] = rr;
+					obj.component[i] = rr;
+					// console.log(obj);
 				}
 			});
-		} 
-		res.json(r);
+		}
+
+
+		// r.component = obj;
+		res.json(obj);
 	})
 	// res.json(req.params);
 });
@@ -136,8 +147,10 @@ router.get('/node/:id', (req, res, next) => {
 router.get('/user/:username', (req, res, next) => {
 	User.findOne({"username" : req.params.username} , (e,r) => {
 		if (e) return res.json({success : false, msg : e});
-		delete r.password;
-		res.json(r);
+		if (!r) return res.json({success: false, msg : "User not found"});
+		var obj = JSON.parse(JSON.stringify(r));
+		delete obj.password;
+		res.json(obj);
 	})
 	// res.json(req.params);
 });
