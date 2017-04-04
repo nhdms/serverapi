@@ -49,11 +49,17 @@ router.post('/signup', (req, res, next) => {
 		password : password,
 	});
 
-	newUser.save((err,r ) => {
-		// console.log(err, r)
-		if (err) return res.json({success:false, msg : 'Username already exists'});
-		res.json({success: true, msg : "Successful created new user."});
-	})
+	User.findOne({username : username}, (err, user) => {
+		if (!err && !user) {
+			newUser.save((err,r ) => {
+				// console.log(err, r)
+				if (err) return res.json({success:false, msg : 'Username already exists'});
+				res.json({success: true, msg : "Successful created new user."});
+			});
+		} else {
+			return res.json({success:false, msg : 'Username already exists'});
+		}
+	});
 });
 
 // Sensorid = ['temp', 'hum', ...]
