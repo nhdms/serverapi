@@ -4,7 +4,7 @@ var Location = require('./Location');
 var RootSchema   = new Schema({
     name: String,
     description : String,
-    location : String
+    locationId : String
     // location : [{lid: mongoose.Schema.Types.ObjectId, ref: 'Location'}]
 });
 

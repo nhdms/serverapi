@@ -1,17 +1,27 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 // var Root = require('./Root');
-
-var NodeSchema   = new Schema({
-	name : String,
-	description : String,
-	rootId : String,
-	component : {
-		temp : String,
-		hum : String,
-		aqi : String,
+var NodeSchema = new Schema({
+	name: String,
+	description: String,
+	rootId: String,
+	component: {
+		temp: String,
+		hum: String,
+		aqi: String,
 	}
 });
+
+NodeSchema.methods.findByIds = (ids, cb) => {
+	// console.log(ids.constructor)
+	if (Array != ids.constructor) cb("Argument 1 must be an array");
+	var NodeModel = mongoose.model('node', NodeSchema);
+	NodeModel.find({
+		"_id": {
+			$in: ids
+		}
+	}, cb);
+}
 
 module.exports = mongoose.model('node', NodeSchema);
 
