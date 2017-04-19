@@ -14,6 +14,28 @@ router.get('/', function (req, res, next) {
   res.json({ message: "nothing here", success: false });
 });
 
+router.use('/follow', (req, res, next) => {
+  var uid = req.decoded._doc._id;
+  // var check = new ObjectId(uid);
+  var deviceId = req.query.deviceId;
+  Following.find({uid : uid, deviceId : deviceId}, (e, r)=> {
+    // console.log(e, r);
+    if (e) return res.json({success : false, msg: e.message || e});
+    // console.log(r)
+    if (r.length) return res.json({success:false, msg : "Already followed"});
+    next();
+  })
+});
+
+
+router.get('/unfollow', (req, res, next) => {
+  var uid = req.decoded._doc._id;
+  var deviceId = req.query.deviceId;
+  Following.remove({uid : uid, deviceId : deviceId}, (e,r) => {
+    if (e) return res.json({success: false, msg : e.message || e});
+    return r.result.n ? res.json({success: true}) : res.json({success: false, msg : "You're not following this device"});
+  });
+});
 
 router.get('/follow', (req, res, next) => {
   // res.json();
@@ -23,30 +45,29 @@ router.get('/follow', (req, res, next) => {
     var check = new ObjectId(uid);
     var deviceId = req.query.deviceId;
     // res.json(deviceId);
-    
+
     Root.findById(deviceId, (err, result) => {
       // console.log(err, result);
-      if (err || !result.name) return res.json({ success: false, msg: "Node not found" });
+      if (err || !result.name) return res.json({ success: false, msg: "Root not found" });
       // Utils.getLocationById(result.locationId, (e, r) => {
       //   if (e) return res.json({ success: false, msg: "Cannot get location for this root" });
       //   result.locationId = r;
       //   return res.json({ success: true, data: result });
       // });
       var follow = new Following({
-        uid : uid,
-        deviceId : deviceId
+        uid: uid,
+        deviceId: deviceId
       });
 
       follow.save((er, r) => {
-        if (er) return res.json({success:false, msg : er.message || er});
-        return res.json({success: true, msg : `You've follow device: ${result.name}`});
+        if (er) return res.json({ success: false, msg: er.message || er });
+        return res.json({ success: true, msg: `You've followed device: ${result.name}` });
       });
     });
-  } catch(e) {
-    return res.json({success : false, msg : "Cannot find current user or deviceId, try to refresh this page", details: e.message || e});
+  } catch (e) {
+    return res.json({ success: false, msg: "Cannot find current user or deviceId, try to refresh this page", details: e.message || e });
   }
 });
-
 
 router.get('/:id', (req, res, next) => {
   // res.json(req.params.id);

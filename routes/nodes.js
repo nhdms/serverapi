@@ -15,6 +15,28 @@ router.get('/', function (req, res, next) {
   res.json({ message: "nothing here", success: false });
 });
 
+router.get('/unfollow', (req, res, next) => {
+  var uid = req.decoded._doc._id;
+  var deviceId = req.query.deviceId;
+  Following.remove({uid : uid, deviceId : deviceId}, (e,r) => {
+    if (e) return res.json({success: false, msg : e.message || e});
+    return r.result.n ? res.json({success: true}) : res.json({success: false, msg : "You're not following this device"});
+  });
+});
+
+router.use('/follow', (req, res, next) => {
+  var uid = req.decoded._doc._id;
+  // var check = new ObjectId(uid);
+  var deviceId = req.query.deviceId;
+  Following.find({uid : uid, deviceId : deviceId}, (e, r)=> {
+    // console.log(e, r);
+    if (e) return res.json({success : false, msg: e.message || e});
+    // console.log(r)
+    if (r.length) return res.json({success:false, msg : "Already followed"});
+    next();
+  })
+});
+
 router.get('/follow', (req, res, next) => {
   // res.json();
   try {
