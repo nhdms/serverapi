@@ -3,7 +3,7 @@
   "info": {
     "name": "API",
     "_postman_id": "8909d16a-11a3-6fca-d47e-15babbf36b47",
-    "description": "",
+    "description": "AQI Server API\nv 1.0",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
