@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Nodes = require('../models/Node');
+var Following = require('../models/Following');
 // var Location = require('../models/Location');
 var Utils = require('../Util/Utils');
 var ObjectId = require('mongoose').Types.ObjectId;
@@ -14,11 +15,42 @@ router.get('/', function (req, res, next) {
   res.json({ message: "nothing here", success: false });
 });
 
+router.get('/follow', (req, res, next) => {
+  // res.json();
+  try {
+    // var check = new ObjectId(req.de)
+    var uid = req.decoded._doc._id;
+    var check = new ObjectId(uid);
+    var deviceId = req.query.deviceId;
+    // res.json(deviceId);
+    
+    Nodes.findById(deviceId, (err, result) => {
+      // console.log(err, result);
+      if (err || !result.name) return res.json({ success: false, msg: "Node not found" });
+      // Utils.getLocationById(result.locationId, (e, r) => {
+      //   if (e) return res.json({ success: false, msg: "Cannot get location for this root" });
+      //   result.locationId = r;
+      //   return res.json({ success: true, data: result });
+      // });
+      var follow = new Following({
+        uid : uid,
+        deviceId : deviceId
+      });
+
+      follow.save((er, r) => {
+        if (er) return res.json({success:false, msg : er.message || er});
+        return res.json({success: true, msg : `You've follow device: ${result.name}`});
+      });
+    });
+  } catch(e) {
+    return res.json({success : false, msg : "Cannot find current user or deviceId, try to refresh this page", details: e.message || e});
+  }
+});
 
 router.get('/:id', (req, res, next) => {
   // res.json(req.params.id);
   Node.findById(req.params.id, (err, result) => {
-    if (err || !result.name) return res.json({ success: false, msg: "Root not found" });
+    if (err || !result.name) return res.json({ success: false, msg: "Node not found" });
     Utils.getLocationById(result.locationId, (e, r) => {
       if (e) return res.json({ success: false, msg: "Cannot get location for this root" });
       result.locationId = r;

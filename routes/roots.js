@@ -3,6 +3,8 @@ var router = express.Router();
 var Root = require('../models/Root');
 // var Location = require('../models/Location');
 var Utils = require('../Util/Utils');
+var ObjectId = require('mongoose').Types.ObjectId;
+var Following = require('../models/Following');
 
 /* GET users listing. */
 // router.post('')
@@ -10,6 +12,39 @@ var Utils = require('../Util/Utils');
 router.get('/', function (req, res, next) {
   // res.send('respond with a resource');
   res.json({ message: "nothing here", success: false });
+});
+
+
+router.get('/follow', (req, res, next) => {
+  // res.json();
+  try {
+    // var check = new ObjectId(req.de)
+    var uid = req.decoded._doc._id;
+    var check = new ObjectId(uid);
+    var deviceId = req.query.deviceId;
+    // res.json(deviceId);
+    
+    Root.findById(deviceId, (err, result) => {
+      // console.log(err, result);
+      if (err || !result.name) return res.json({ success: false, msg: "Node not found" });
+      // Utils.getLocationById(result.locationId, (e, r) => {
+      //   if (e) return res.json({ success: false, msg: "Cannot get location for this root" });
+      //   result.locationId = r;
+      //   return res.json({ success: true, data: result });
+      // });
+      var follow = new Following({
+        uid : uid,
+        deviceId : deviceId
+      });
+
+      follow.save((er, r) => {
+        if (er) return res.json({success:false, msg : er.message || er});
+        return res.json({success: true, msg : `You've follow device: ${result.name}`});
+      });
+    });
+  } catch(e) {
+    return res.json({success : false, msg : "Cannot find current user or deviceId, try to refresh this page", details: e.message || e});
+  }
 });
 
 
