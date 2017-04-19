@@ -11,7 +11,48 @@
       "_postman_id": "07a109ae-4ae8-b34d-de81-075e4ff54919",
       "name": "User",
       "description": "",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "2b402ef4-bb3a-d37f-2409-2896e40dc5b5",
+          "name": "Register",
+          "request": {
+            "url": "localhost:8080/users/register",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "c2",
+                  "type": "text",
+                  "enabled": true
+                },
+                {
+                  "key": "password",
+                  "value": "2345678w",
+                  "type": "text",
+                  "enabled": true
+                },
+                {
+                  "key": "email",
+                  "value": "c@con3lon.com",
+                  "type": "text",
+                  "enabled": true
+                }
+              ]
+            },
+            "description": "User registration"
+          },
+          "response": []
+        }
+      ]
     },
     {
       "_postman_id": "2a6bf214-0cda-e9c8-55ef-5b2290dc4c38",
@@ -48,46 +89,6 @@
       "name": "Data",
       "description": "",
       "item": []
-    },
-    {
-      "_postman_id": "2b402ef4-bb3a-d37f-2409-2896e40dc5b5",
-      "name": "Register",
-      "request": {
-        "url": "localhost:8080/users/register",
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded",
-            "description": ""
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "username",
-              "value": "c2",
-              "type": "text",
-              "enabled": true
-            },
-            {
-              "key": "password",
-              "value": "2345678w",
-              "type": "text",
-              "enabled": true
-            },
-            {
-              "key": "email",
-              "value": "c@con3lon.com",
-              "type": "text",
-              "enabled": true
-            }
-          ]
-        },
-        "description": "User registration"
-      },
-      "response": []
     },
     {
       "_postman_id": "a78e8b3b-c0f4-0b66-f375-fc37033ca8a6",
