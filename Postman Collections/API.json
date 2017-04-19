@@ -258,7 +258,7 @@
             "method": "GET",
             "header": [],
             "body": {},
-            "description": ""
+            "description": "Get node info"
           },
           "response": []
         }
