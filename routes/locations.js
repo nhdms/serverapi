@@ -13,9 +13,10 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/:id', (req, res, next) => {
+router.get('/info', (req, res, next) => {
     // res.json(req.params.id);
-    Location.findById(req.params.id, (err, result) => {
+    var id = req.query.id;
+    Location.findById(id, (err, result) => {
         // res.json({});
         if (err) return res.json({success: false, msg : err.message || err});
         return res.json({success : true, data : result});

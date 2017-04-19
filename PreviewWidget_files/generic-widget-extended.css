@@ -1,0 +1,1431 @@
+﻿/* Basic Widget Styles */
+
+#apimatic-widget {
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    min-width: 1000px;
+    max-height: auto;
+    position: relative;
+}
+
+    #apimatic-widget .remove {
+        display: none;
+    }
+
+    #apimatic-widget .translate {
+        transform: translateY(-70%);
+        position: fixed !important;
+        top: 0;
+        z-index: 9999;
+        border-bottom: 1px solid #0b0b0b;
+    }
+
+        #apimatic-widget .translate p {
+            margin-top: 13px !important;
+        }
+
+    #apimatic-widget .position-fix {
+        position: fixed !important;
+        top: 47px;
+        z-index: 100;
+    }
+
+    #apimatic-widget .panel-right-position-reset {
+        position: relative;
+        margin-top: 136px;
+        left: 250px;
+    }
+
+    #apimatic-widget .panel-left-position-reset {
+        position: fixed !important;
+        top: 47px;
+    }
+
+    #apimatic-widget .footer-position-reset {
+    }
+
+    #apimatic-widget .leftHorizontalRule {
+        position: absolute;
+        width: 1px;
+        height: 70px;
+        margin-top: -5px;
+        margin-left: -35px;
+        border: 1px solid #191919;
+    }
+
+    #apimatic-widget .rightHorizontalRule {
+        position: absolute;
+        width: 1px;
+        height: 70px;
+        margin-top: -87px;
+        margin-left: 760px;
+        border: 1px solid #191919;
+    }
+
+    #apimatic-widget .panel-body {
+        min-height: 600px;
+    }
+
+    #apimatic-widget .panel-right {
+        width: 830px;
+        min-height: 602px;
+        float: left;
+    }
+
+    #apimatic-widget .footer {
+        width: 100%;
+        height: 35px;
+        clear: both;
+    }
+
+        #apimatic-widget .footer p {
+            text-align: center;
+            font-size: 11px;
+            margin-top: 10px;
+        }
+
+    #apimatic-widget.dark .footer {
+        background: #181818;
+        border-top: 1px solid #0b0b0b;
+    }
+
+        #apimatic-widget.dark .footer p {
+            color: #fff;
+        }
+
+    #apimatic-widget.light .footer {
+        background: white;
+        border-top: 1px solid #e2e5e7;
+    }
+
+        #apimatic-widget.light .footer p {
+            color: #a5b3bb;
+        }
+
+    #apimatic-widget.light .saperator {
+        border-right: 1px solid #004c91;
+        position: relative;
+    }
+
+    #apimatic-widget.dark .saperator {
+        border-right: 1px solid #303030;
+        position: relative;
+    }
+
+    #apimatic-widget .panel-left {
+        width: 250px;
+        float: left;
+        min-height: 602px;
+        max-height: 605px;
+        padding-top: 30px;
+        padding-left: 5px;
+        position: relative;
+    }
+
+        /*sponcer logo*/
+        #apimatic-widget .panel-left .sponcer-logo {
+            width: 100%;
+            height: 35px;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            border-top: 1px solid transparent;
+            margin-left: -5px;
+        }
+
+            #apimatic-widget .panel-left .sponcer-logo p {
+                color: #a5b3bb;
+                font-size: 12px;
+                margin-top: 9px;
+            }
+
+    #apimatic-widget.dark .panel-left .sponcer-logo {
+        border-color: #0b0b0b;
+    }
+
+    #apimatic-widget.light .panel-left .sponcer-logo {
+        border-color: #e2e5e7;
+    }
+    /*left navigation list elements*/
+    #apimatic-widget .panel-left .left-navigation {
+        position: relative;
+        max-height: 534px;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    #apimatic-widget .panel-left ul {
+        list-style: none;
+        padding-left: 0;
+        padding-right: 5px;
+    }
+
+    #apimatic-widget .panel-left li {
+        display: block;
+        padding: 5px 0;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+        #apimatic-widget .panel-left li ul {
+            margin-left: 10px;
+        }
+
+    #apimatic-widget .panel-left ul li {
+        padding-left: 10px;
+    }
+
+    #apimatic-widget.dark .panel-left .left-navigation > ul > li:first-child {
+        border-bottom: 1px solid #0b0b0b;
+        font-weight: bold;
+    }
+
+    #apimatic-widget.light .panel-left .left-navigation > ul > li:first-child {
+        border-bottom: 1px solid #e2e5e7;
+        font-weight: bold;
+    }
+
+    #apimatic-widget.dark .panel-left .left-navigation > ul > li:last-child {
+        border-top: 1px solid #0b0b0b;
+        font-weight: bold;
+    }
+
+    #apimatic-widget.light .panel-left .left-navigation > ul > li:last-child {
+        border-top: 1px solid #e2e5e7;
+        font-weight: bold;
+    }
+
+    #apimatic-widget.dark .panel-left > ul > li:first-child {
+        padding-left: 0;
+        margin-left: 11px;
+        border-bottom: 1px solid #0b0b0b;
+    }
+
+
+    #apimatic-widget .panel-left li ul .collapsibleList {
+        width: 240px !important;
+    }
+
+    #apimatic-widget .panel-left ul li.collapsibleListOpen {
+        background: url('../../img/pointerDown.svg') no-repeat top left;
+        background-position-y: 13.5px;
+    }
+
+    #apimatic-widget .panel-left ul li.collapsibleListClosed {
+        background: url('../../img/PointerRight.svg') no-repeat top left;
+        background-position-y: 11px;
+    }
+
+
+
+    #apimatic-widget .panel-left li a {
+        display: inline-block;
+        text-align: start;
+        text-indent: 0em;
+        padding: 3px 5px;
+        color: #676a6c;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 13px;
+    }
+
+    #apimatic-widget .panel-left li ul li a {
+        font-size: 12px;
+    }
+
+    #apimatic-widget.light .panel-left li a:hover {
+        cursor: pointer;
+    }
+
+    #apimatic-widget .panel-left li a:hover {
+        text-decoration: none;
+    }
+
+    #apimatic-widget .panel-left li a.heading1 {
+        margin-left: 5px;
+    }
+
+    #apimatic-widget .panel-left li a.heading2 {
+        margin-left: 15px;
+    }
+
+    #apimatic-widget .panel-left li a.heading3 {
+        margin-left: 25px;
+    }
+
+    #apimatic-widget .panel-left li a.heading4 {
+        margin-left: 35px;
+    }
+
+    #apimatic-widget .panel-centered {
+        width: 1080px;
+        margin: 30px auto 0;
+    }
+
+    #apimatic-widget .right-nav .widget-logo {
+        margin-left: -225px;
+        margin-bottom: -40px;
+        padding-top: 10px;
+    }
+
+        #apimatic-widget .right-nav .widget-logo img {
+            width: 117px !important;
+            height: 30px !important;
+        }
+
+    #apimatic-widget .docs-content p img {
+        margin-bottom: 20px;
+    }
+
+    #apimatic-widget .loader {
+        position: absolute;
+        top: 50%;
+        left: 57%;
+        transform: translate(-50%, -50%);
+    }
+
+    #apimatic-widget .powered-by {
+        width: 450px;
+        text-align: center;
+    }
+
+        #apimatic-widget .powered-by a {
+            color: #0096ff;
+        }
+
+    #apimatic-widget.dark .powered-by {
+        color: #ccc;
+    }
+
+    #apimatic-widget .displaynone {
+        display: none;
+    }
+
+    #apimatic-widget .nav-tabs {
+        border: none !important;
+    }
+
+    #apimatic-widget ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+
+    /* Scroll Bar Dark Styles */
+
+    #apimatic-widget.dark ::-webkit-scrollbar-track,
+    #apimatic-widget.dark .panel-left ::-webkit-scrollbar-track,
+    #apimatic-widget.dark .docs-content pre code ::-webkit-scrollbar-track {
+        background: #121212 !important;
+    }
+
+    #apimatic-widget.dark ::-webkit-scrollbar-thumb,
+    #apimatic-widget.dark .panel-left::-webkit-scrollbar-thumb {
+        border-radius: 3px !important;
+        background: #3c3c3c !important;
+    }
+
+    /* Scroll Bar Light Styles */
+
+    #apimatic-widget.light ::-webkit-scrollbar-track,
+    #apimatic-widget.light .panel-left::-webkit-scrollbar-track {
+        background: #f1f4f7 !important;
+    }
+
+    #apimatic-widget.light ::-webkit-scrollbar-thumb,
+    #apimatic-widget.light .panel-left::-webkit-scrollbar-thumb {
+        border-radius: 3px !important;
+        background: #d3d8dd !important;
+    }
+
+
+    #apimatic-widget.light .docs-content pre code::-webkit-scrollbar-track {
+        background: #172235 !important;
+    }
+
+    #apimatic-widget.light .docs-content pre code::-webkit-scrollbar-thumb {
+        background: #465676 !important;
+        border-radius: 3px !important;
+    }
+
+    /* Docs Panel Styles */
+    #apimatic-widget .panel, #apimatic-widget .panel-heading {
+        max-height: 800px;
+        max-width: 100%;
+        resize: vertical;
+        position: relative;
+    }
+
+    #apimatic-widget .panel-body {
+        max-width: 100%;
+        max-height: auto;
+        float: none;
+    }
+
+        #apimatic-widget .panel-body .tab-pane {
+            max-width: 800px;
+            min-width: 600px;
+            min-height: 600px;
+            margin: 0 auto;
+        }
+
+
+
+    #apimatic-widget .docs-content {
+        padding: 10px 15px;
+    }
+
+
+    /******** DESCRIPTION URL BAR STARTS********/
+
+    #apimatic-widget .decription-url {
+        width: 100%;
+        height: 45px;
+        background: #181818;
+    }
+
+        #apimatic-widget .decription-url .decription-url-centered {
+            width: 1080px;
+            height: 45px;
+            margin: 0 auto;
+        }
+
+            #apimatic-widget .decription-url .decription-url-centered label,
+            #apimatic-widget .decription-url .decription-url-centered input,
+            #apimatic-widget .decription-url .decription-url-centered button {
+                float: left;
+            }
+
+            #apimatic-widget .decription-url .decription-url-centered label {
+                margin-top: 15px;
+                font-size: 12px;
+                font-weight: 500;
+                color: white;
+                padding-left: 5px;
+            }
+
+            #apimatic-widget .decription-url .decription-url-centered button {
+                width: 105px;
+                height: 25px;
+                background: white;
+                margin-top: 10px;
+                border: none;
+                font-size: 12px;
+                border-radius: 3px;
+            }
+
+
+            #apimatic-widget .decription-url .decription-url-centered input {
+                background: #121212;
+                width: 825px !important;
+                height: 25px;
+                border: 1px solid #0b0b0b;
+                padding: 5px;
+                width: 700px;
+                border-radius: 3px;
+                margin: 10px 20px;
+                color: white;
+            }
+
+    /******** DESCRIPTION URL BAR ENDS ********/
+
+    /* Generic Navigation Styles STARTS*/
+
+    #apimatic-widget .with-nav-tabs .panel-heading {
+        width: 100%;
+        height: 160px;
+        position: relative;
+        clear: both;
+        float: none;
+        padding-top: 65px;
+    }
+
+        #apimatic-widget .with-nav-tabs .panel-heading .panel-heading-centered {
+            width: 1080px;
+            margin: 0 auto;
+        }
+
+        #apimatic-widget .with-nav-tabs .panel-heading .nav-tabs {
+            border: none;
+        }
+
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs > li.active,
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:hover,
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:focus {
+            border: none;
+            height: 94px;
+        }
+
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs > li {
+            margin-right: 10px;
+        }
+
+            #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs > li a {
+                width: 73px;
+                height: 60px;
+                background: none;
+                border-radius: 15px;
+                border: none;
+                padding: 5px;
+                margin: 0;
+                text-align: center;
+            }
+
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li p {
+            margin-top: 5px;
+        }
+
+        /*==== HTTP/JSON Dropdown ENDS ====*/
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li:first-child p {
+            margin-top: 9px;
+        }
+
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li:first-child a {
+            width: 95px;
+            margin-top: 2.5px;
+        }
+
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li:first-child.active a,
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li:first-child:hover a,
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li:first-child:focus a {
+            height: 60px;
+        }
+
+        /*==== HTTP/JSON Dropdown ENDS ====*/
+
+        /*==== TRANSFORMER Dropdown STARTS ====*/
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li:last-child p {
+            height: 25px;
+            line-height: 20px;
+            -o-border: 1px solid transparent !important;
+            -moz-border: 1px solid transparent !important;
+            -webkit-border: 1px solid transparent !important;
+            border: 1px solid transparent !important;
+        }
+
+            #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li:last-child p:hover {
+                height: 25px;
+                -o-border: 1px solid transparent !important;
+                -moz-border: 1px solid transparent !important;
+                -webkit-border: 1px solid transparent !important;
+                border: 1px solid transparent !important;
+            }
+
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li:last-child.active,
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li:last-child:hover,
+        #apimatic-widget .with-nav-tabs .panel-heading .right-nav .nav-tabs li:last-child:focus {
+            border: none !important;
+            height: 60px;
+        }
+
+        #apimatic-widget .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu {
+            margin-top: 20px;
+        }
+
+
+            #apimatic-widget .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li a,
+            #apimatic-widget .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li a {
+                width: 100% !important;
+                height: 28px !important;
+                border: none;
+                border-radius: 0px;
+                line-height: 20px !important;
+            }
+
+            #apimatic-widget .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li:hover a,
+            #apimatic-widget .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li:focus a {
+                width: 100% !important;
+                height: 28px !important;
+                border: none;
+                border-radius: 0px;
+                line-height: 20px !important;
+            }
+
+            #apimatic-widget .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li:hover,
+            #apimatic-widget .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li:focus {
+                width: 100%;
+                height: 28px !important;
+                border: none;
+                border-radius: 0px;
+                line-height: 20px !important;
+            }
+    /*==== TRANSFORMER Dropdown ENDS ====*/
+
+    /*=================================================================================*/
+    /*==== LIGHT THEME  Styles STARTS ====*/
+
+    #apimatic-widget.light .with-nav-tabs .panel-heading {
+        background: #0058a9;
+    }
+
+    #apimatic-widget.light .panel-left {
+        border: 1px solid #e2e5e7 !important;
+    }
+
+    #apimatic-widget.light {
+        font-family: 'Open Sans', sans-serif;
+        background: #f2f5f7 !important;
+    }
+
+        #apimatic-widget.light .hljs {
+            background: #2a3853 !important;
+        }
+
+        /*COMMON FONT COLORS*/
+        #apimatic-widget.light .header-docs, #apimatic-widget.light .docs-content table,
+        #apimatic-widget.light .docs-content h1, #apimatic-widget.light .docs-content h2,
+        #apimatic-widget.light .docs-content h3, #apimatic-widget.light .docs-content h4,
+        #apimatic-widget.light .docs-content h5, #apimatic-widget.light .docs-content p,
+        #apimatic-widget.light .docs-content ol li, #apimatic-widget.light .docs-content ul {
+            color: #676a6c;
+        }
+        /*COMMON FONT SIZE*/
+        #apimatic-widget.light .docs-content p,
+        #apimatic-widget.light .docs-content ol li, #apimatic-widget.light .docs-content ul,
+        #apimatic-widget.light .docs-content table, #apimatic-widget.light .docs-content pre code {
+            font-size: 13px;
+            line-height: 20px;
+        }
+            /*CODE LABLE STYLE*/
+            #apimatic-widget.light .docs-content p code, #apimatic-widget.light .docs-content table code, #apimatic-widget.light .docs-content li code {
+                background: #ddf2f0;
+                color: #24c3b6;
+                padding: 1px 5px;
+                border-radius: 4px;
+            }
+        /* LIGHT THEME DESCRIPTION URL LIGHT THEME STARTS */
+
+        #apimatic-widget.light .decription-url {
+            background: #004c91;
+        }
+
+            #apimatic-widget.light .decription-url .decription-url-centered input {
+                background: #0058a9;
+                border: 1px solid #00427d;
+                color: white;
+            }
+
+            #apimatic-widget.light .decription-url .decription-url-centered label {
+                color: white;
+            }
+
+            #apimatic-widget.light .decription-url .decription-url-centered button {
+                background: white;
+                color: #0058a9;
+            }
+
+            #apimatic-widget.light .decription-url ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                color: white;
+            }
+
+            #apimatic-widget.light .decription-url ::-moz-placeholder { /* Firefox 19+ */
+                color: white;
+            }
+
+            #apimatic-widget.light .decription-url :-ms-input-placeholder { /* IE 10+ */
+                color: white;
+            }
+
+            #apimatic-widget.light .decription-url :-moz-placeholder { /* Firefox 18- */
+                color: white;
+            }
+
+        /* LIGHT TEHME DESCRIPTION URL LIGHT THEME ENDS */
+
+        /*LIGHT THEME Navigation Styles STARTS */
+
+
+        #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs {
+            width: 100% !important;
+            margin: 0 auto;
+            display: block;
+            border-right: 1px solid #fff;
+        }
+
+        #apimatic-widget.light .right-nav .nav-tabs .white-language-icon {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #apimatic-widget.light .right-nav .nav-tabs .colored-language-icon {
+            display: none;
+        }
+
+        #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs > li a {
+            background: none;
+            border: none;
+            color: #fff;
+            text-align: center;
+        }
+
+        #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs > li.active,
+        #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:hover,
+        #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:focus {
+            border-bottom: 3px solid #fff;
+        }
+
+        #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:last-child a {
+            width: 130px;
+            height: 60px;
+            background: none;
+            border-radius: 15px;
+            border: none;
+            padding: 5px;
+            margin: 0;
+            color: white;
+            text-align: center;
+        }
+
+        #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:first-child a {
+            margin-left: 5px;
+        }
+
+        #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs > li a p {
+            font-size: 11.5px;
+            padding: 5px 0;
+        }
+
+        #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:last-child a p {
+            font-size: 12px;
+            margin-top: 5px;
+            padding: 2px;
+            border: 1px solid #00427d !important;
+            border-radius: 3px;
+        }
+
+    #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs li:first-child p {
+        border-right: 1px solid #1a7ac1;
+    }
+
+    /* LIGHT THEME Dropdown STARTS */
+    #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs li:last-child p {
+        background: rgba(1,93,179,1);
+        background: -moz-linear-gradient(top, rgba(1,93,179,1) 0%, rgba(0,75,145,1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(1,93,179,1)), color-stop(100%, rgba(0,75,145,1)));
+        background: -webkit-linear-gradient(top, rgba(1,93,179,1) 0%, rgba(0,75,145,1) 100%);
+        background: -o-linear-gradient(top, rgba(1,93,179,1) 0%, rgba(0,75,145,1) 100%);
+        background: -ms-linear-gradient(top, rgba(1,93,179,1) 0%, rgba(0,75,145,1) 100%);
+        background: linear-gradient(to bottom, rgba(1,93,179,1) 0%, rgba(0,75,145,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#015db3 ', endColorstr='#004b91 ', GradientType=0 );
+    }
+
+        #apimatic-widget.light .with-nav-tabs .panel-heading .right-nav .nav-tabs li:last-child p:hover {
+            background: rgba(0,75,145,1);
+            background: -moz-linear-gradient(top, rgba(0,75,145,1) 0%, rgba(1,93,179,1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,75,145,1)), color-stop(100%, rgba(1,93,179,1)));
+            background: -webkit-linear-gradient(top, rgba(0,75,145,1) 0%, rgba(1,93,179,1) 100%);
+            background: -o-linear-gradient(top, rgba(0,75,145,1) 0%, rgba(1,93,179,1) 100%);
+            background: -ms-linear-gradient(top, rgba(0,75,145,1) 0%, rgba(1,93,179,1) 100%);
+            background: linear-gradient(to bottom, rgba(0,75,145,1) 0%, rgba(1,93,179,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004b91 ', endColorstr='#015db3 ', GradientType=0 );
+        }
+
+    #apimatic-widget.light .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu {
+        background: #fff;
+        border: 1px solid #e2e5e7;
+    }
+
+        #apimatic-widget.light .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li a {
+            color: #7c8395;
+        }
+
+        #apimatic-widget.light .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li:hover a,
+        #apimatic-widget.light .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li:focus a {
+            color: #005a89;
+        }
+    /* LIGHT THEME Dropdown ENDS */
+
+    /* LIGHT THEME Navigation Styles ENDS */
+
+
+    #apimatic-widget.light .panel-body,
+    #apimatic-widget.light .panel-left {
+        font-family: 'Open Sans', sans-serif;
+        background: #fff !important;
+        border: 1px solid #e2e5e7;
+    }
+
+        #apimatic-widget.light .panel-left li a {
+            color: #7c8395;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+            #apimatic-widget.light .panel-left li a span {
+                display: inline-block;
+                width: 45px;
+                height: 20px;
+                text-align: center;
+                color: white;
+				font-size:10px;
+                line-height: 20px;
+                border-radius: 3px;
+            }
+
+                #apimatic-widget.light .panel-left li a span.get {
+                    background: #45bf7b !important;
+                }
+
+            #apimatic-widget.light .panel-left li a span.post {
+                background: #fda737;
+            }
+
+            #apimatic-widget.light .panel-left li a span.put {
+                background: #3ab2d0;
+            }
+
+            #apimatic-widget.light .panel-left li a span.delete {
+                background: #d04f3a;
+            }
+
+        #apimatic-widget.light .panel-left ul li.collapsibleListOpen a {
+            color: #0058a9 !important;
+            font-weight: bold;
+        }
+
+        #apimatic-widget.light .panel-left ul li.collapsibleListOpen .collapsibleList a {
+            color: #7c8395 !important;
+            font-weight: 500;
+        }
+
+            #apimatic-widget.light .panel-left ul li.collapsibleListOpen .collapsibleList a.active,
+            #apimatic-widget.dark .panel-left ul li a.active {
+                font-weight: bold;
+                color: #0058a9 !important;
+            }
+
+        #apimatic-widget.light .panel-left li a:hover {
+            background: #f2f5f7;
+        }
+
+    #apimatic-widget.light .panel-body {
+        border-left: none;
+    }
+
+    /*COMMON FONT COLORS*/
+    #apimatic-widget.light .header-docs, #apimatic-widget.light .docs-content table,
+    #apimatic-widget.light .docs-content h1, #apimatic-widget.light .docs-content h2,
+    #apimatic-widget.light .docs-content h3, #apimatic-widget.light .docs-content h4,
+    #apimatic-widget.light .docs-content h5, #apimatic-widget.light .docs-content p,
+    #apimatic-widget.light .docs-content ol li, #apimatic-widget.light .docs-content ul,
+    #apimatic-widget.light .panel-left a {
+        color: #676a6c;
+    }
+    /*COMMON FONT SIZE*/
+    #apimatic-widget.dark .docs-content p,
+    #apimatic-widget.dark .docs-content ol li, #apimatic-widget.dark .docs-content ul,
+    #apimatic-widget.dark .docs-content table, #apimatic-widget.dark .docs-content pre code {
+        font-size: 13px;
+        line-height: 20px;
+    }
+        /*CODE LABLE STYLE*/
+        #apimatic-widget.dark .docs-content p code, #apimatic-widget.dark .docs-content table code, #apimatic-widget.dark .docs-content li code {
+            background: #0c0c0c;
+            color: #24c3b6;
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+
+    #apimatic-widget.dark .hljs {
+        background: #181818 !important;
+    }
+
+    /*====== LIGHT THEME .DOCS-HEADER STYLE STARTS ======*/
+
+    #apimatic-widget.light .header-docs-container {
+        width: 800px;
+        height: 105px;
+        position: absolute;
+        background: #fff;
+    }
+
+    #apimatic-widget.light .header-docs {
+        width: 800px;
+        height: 95px;
+        position: absolute;
+        background: #e8f5fd;
+        border: 1px solid #cceefd;
+        padding: 10px 15px;
+        margin-top: 10px;
+    }
+
+
+        #apimatic-widget.light .header-docs h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 0;
+            color: #0058a9;
+        }
+
+        #apimatic-widget.light .header-docs h4,
+        #apimatic-widget.light .header-docs p {
+            font-size: 12px;
+            margin: 5px 0;
+            color: #7c8395;
+        }
+
+            #apimatic-widget.light .header-docs h4 button {
+                background: #0058a9;
+                width: 125px;
+                height: 23px;
+                color: #fff;
+                font-size: 12px;
+                border-radius: 3px;
+                float: right;
+                padding: 6px 0;
+                margin-top: -30px;
+                border: none;
+                outline: none;
+            }
+
+                #apimatic-widget.light .header-docs h4 button:hover,
+                #apimatic-widget.light .header-docs h4 button:focus {
+                    background: #004c91;
+                }
+
+        #apimatic-widget.light .header-docs p {
+        }
+
+        #apimatic-widget.light .header-docs hr {
+            border-top: 1px solid #0d0d0d;
+        }
+
+
+    /*==============================================================*/
+    /*==== DARK THEME Styles STARTS ====*/
+
+    #apimatic-widget.dark .panel-left {
+        border: 1px solid #0b0b0b !important;
+    }
+
+    #apimatic-widget.dark {
+        background: #181818;
+    }
+
+        #apimatic-widget.dark .with-nav-tabs .panel-heading {
+            background: #121212 !important;
+        }
+
+            /*==== DARK THEME Navigation Styles STARTS ====*/
+            #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs > li.active,
+            #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:hover,
+            #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:focus {
+                border-bottom: 3px solid #fff;
+            }
+
+            #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs {
+                width: 100% !important;
+                margin: 0 auto;
+                display: block;
+                border-right: 1px solid #fff;
+            }
+
+        #apimatic-widget.dark .right-nav .nav-tabs .white-language-icon {
+            display: none;
+            margin: 0 auto;
+        }
+
+        #apimatic-widget.dark .right-nav .nav-tabs .colored-language-icon {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs > li a {
+            color: #fff;
+        }
+
+        #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:last-child a {
+            width: 130px;
+            height: 60px;
+            background: none;
+            border-radius: 15px;
+            border: none;
+            padding: 5px;
+            margin: 0;
+            color: white;
+            text-align: center !important;
+        }
+
+        #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:first-child a {
+            margin-left: 5px;
+        }
+
+        #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs > li a p {
+            font-size: 11.5px;
+            padding: 5px 0;
+        }
+
+        #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs > li:last-child a p {
+            font-size: 12px;
+            margin-top: 5px;
+            padding: 2px;
+            border: 1px solid #121212;
+            border-radius: 3px;
+        }
+
+        #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs li:first-child p {
+            border-right: 1px solid #000;
+        }
+
+        /*==== DARK THEME Dropdown STARTS ====*/
+        #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs li:last-child p {
+            -o-border-color: #000 !important;
+            -moz-border-color: #000 !important;
+            -webkit-border-color: #000 !important;
+            border-color: #000 !important;
+            background: rgba(42,42,42,1);
+            background: -moz-linear-gradient(top, rgba(42,42,42,1) 0%, rgba(18,18,18,1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(42,42,42,1)), color-stop(100%, rgba(18,18,18,1)));
+            background: -webkit-linear-gradient(top, rgba(42,42,42,1) 0%, rgba(18,18,18,1) 100%);
+            background: -o-linear-gradient(top, rgba(42,42,42,1) 0%, rgba(18,18,18,1) 100%);
+            background: -ms-linear-gradient(top, rgba(42,42,42,1) 0%, rgba(18,18,18,1) 100%);
+            background: linear-gradient(to bottom, rgba(42,42,42,1) 0%, rgba(18,18,18,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2a2a2a ', endColorstr='#121212 ', GradientType=0 );
+        }
+
+            #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs li:last-child p:hover {
+                height: 25px;
+                -o-border-color: #000 !important;
+                -moz-border-color: #000 !important;
+                -webkit-border-color: #000 !important;
+                border-color: #000 !important;
+                background: rgba(18,18,18,1);
+                background: -moz-linear-gradient(top, rgba(18,18,18,1) 0%, rgba(42,42,42,1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(18,18,18,1)), color-stop(100%, rgba(42,42,42,1)));
+                background: -webkit-linear-gradient(top, rgba(18,18,18,1) 0%, rgba(42,42,42,1) 100%);
+                background: -o-linear-gradient(top, rgba(18,18,18,1) 0%, rgba(42,42,42,1) 100%);
+                background: -ms-linear-gradient(top, rgba(18,18,18,1) 0%, rgba(42,42,42,1) 100%);
+                background: linear-gradient(to bottom, rgba(18,18,18,1) 0%, rgba(42,42,42,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#121212 ', endColorstr='#2a2a2a ', GradientType=0 );
+            }
+
+        #apimatic-widget.dark .with-nav-tabs .panel-heading .right-nav .nav-tabs li:last-child a.disabled p:hover {
+            -o-border-color: #000 !important;
+            -moz-border-color: #000 !important;
+            -webkit-border-color: #000 !important;
+            border-color: #000 !important;
+            background: rgba(42,42,42,1);
+            background: -moz-linear-gradient(top, rgba(42,42,42,1) 0%, rgba(18,18,18,1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(42,42,42,1)), color-stop(100%, rgba(18,18,18,1)));
+            background: -webkit-linear-gradient(top, rgba(42,42,42,1) 0%, rgba(18,18,18,1) 100%);
+            background: -o-linear-gradient(top, rgba(42,42,42,1) 0%, rgba(18,18,18,1) 100%);
+            background: -ms-linear-gradient(top, rgba(42,42,42,1) 0%, rgba(18,18,18,1) 100%);
+            background: linear-gradient(to bottom, rgba(42,42,42,1) 0%, rgba(18,18,18,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2a2a2a ', endColorstr='#121212 ', GradientType=0 );
+        }
+
+        #apimatic-widget.dark .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu {
+            background: #121212;
+            color: #fff !important;
+        }
+
+            #apimatic-widget.dark .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li:hover a,
+            #apimatic-widget.dark .with-nav-tabs .panel-heading .nav-tabs li:last-child .dropdown-menu li:focus a {
+                color: #00ae50 !important;
+            }
+        /* DARK THEME Dropdown ENDS */
+        /* DARK THEME Navigation Styles ENDS */
+
+        /* DESCRIPTION URL DARK THEME STARTS */
+        #apimatic-widget.dark .decription-url {
+            background: #181818;
+        }
+
+            #apimatic-widget.dark .decription-url .decription-url-centered input {
+                background: #121212;
+                border: 1px solid #0b0b0b;
+                color: white;
+            }
+
+            #apimatic-widget.dark .decription-url .decription-url-centered label {
+                color: white;
+            }
+
+            #apimatic-widget.dark .decription-url .decription-url-centered button {
+                background: white;
+            }
+        /* DESCRIPTION URL DARK THEME ENDS */
+
+        #apimatic-widget.dark .panel-body, #apimatic-widget.dark .panel-left {
+            font-family: 'Open Sans', sans-serif;
+            background: #121212 !important;
+            border: 1px solid #0b0b0b;
+        }
+
+            #apimatic-widget.dark .panel-left li a {
+                color: #c2c2c2;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+                #apimatic-widget.dark .panel-left li a span {
+                    display: inline-block;
+                    width: 45px;
+                    height: 20px;
+                    text-align: center;
+                    color: white;
+					font-size:10px;
+                    line-height: 20px;
+                    border-radius: 3px;
+                }
+
+                    #apimatic-widget.dark .panel-left li a span.get {
+                        background: #45bf7b !important;
+                    }
+
+                #apimatic-widget.dark .panel-left li a span.post {
+                    background: #fda737;
+                }
+
+                #apimatic-widget.dark .panel-left li a span.put {
+                    background: #3ab2d0;
+                }
+
+                #apimatic-widget.dark .panel-left li a span.delete {
+                    background: #d04f3a;
+                }
+
+
+            #apimatic-widget.dark .panel-left ul li.collapsibleListOpen a {
+                color: #00ae50;
+            }
+
+            #apimatic-widget.dark .panel-left ul li.collapsibleListOpen .collapsibleList a {
+                color: #c2c2c2 !important;
+            }
+
+                #apimatic-widget.dark .panel-left ul li.collapsibleListOpen .collapsibleList a.active,
+                #apimatic-widget.dark .panel-left ul li a.active {
+                    color: #00ae50 !important;
+                }
+
+            #apimatic-widget.dark .panel-left li a:hover {
+                background: #181818;
+            }
+
+        #apimatic-widget.dark .panel-body {
+            border-left: none;
+        }
+        /*COMMON FONT COLORS*/
+        #apimatic-widget.dark .header-docs, #apimatic-widget.dark .docs-content table,
+        #apimatic-widget.dark .docs-content h1, #apimatic-widget.dark .docs-content h2,
+        #apimatic-widget.dark .docs-content h3, #apimatic-widget.dark .docs-content h4,
+        #apimatic-widget.dark .docs-content h5, #apimatic-widget.dark .docs-content p,
+        #apimatic-widget.dark .docs-content ol li, #apimatic-widget.dark .docs-content ul,
+        #apimatic-widget.dark .panel-left a {
+            color: #c2c2c2;
+        }
+        /*COMMON FONT SIZE*/
+        #apimatic-widget.dark .docs-content p,
+        #apimatic-widget.dark .docs-content ol li, #apimatic-widget.dark .docs-content ul,
+        #apimatic-widget.dark .docs-content table, #apimatic-widget.dark .docs-content pre code {
+            font-size: 13px;
+            line-height: 20px;
+        }
+            /*CODE LABLE STYLE*/
+            #apimatic-widget.dark .docs-content p code, #apimatic-widget.dark .docs-content table code, #apimatic-widget.dark .docs-content li code {
+                background: #0c0c0c;
+                color: #24c3b6;
+                padding: 1px 5px;
+                border-radius: 4px;
+            }
+
+        #apimatic-widget.dark .hljs {
+            background: #181818 !important;
+        }
+        /*====== .DOCS-HEADER STYLE STARTS ======*/
+
+        #apimatic-widget.dark .header-docs-container {
+            width: 800px;
+            height: 105px;
+            position: absolute;
+            background: #121212;
+        }
+
+        #apimatic-widget.dark .header-docs {
+            width: 800px;
+            height: 95px;
+            position: absolute;
+            background: #181818;
+            border: 1px solid #0b0b0b;
+            padding: 10px 15px;
+            margin-top: 10px;
+        }
+
+        #apimatic-widget.dark div[id^="docs-"] > div:nth-child(2),
+        #apimatic-widget.light div[id^="docs-"] > div:nth-child(2) {
+            padding-top: 100px;
+        }
+
+        #apimatic-widget.dark .header-docs h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 0;
+            color: #00ae50;
+        }
+
+        #apimatic-widget.dark .header-docs h4,
+        #apimatic-widget.dark .header-docs p {
+            font-size: 12px;
+            margin: 5px 0;
+        }
+
+            #apimatic-widget.dark .header-docs h4 button {
+                background: #00ae50;
+                width: 125px;
+                height: 23px;
+                color: #fff;
+                font-size: 12px;
+                border-radius: 3px;
+                float: right;
+                padding: 6px 0;
+                margin-top: -30px;
+                border: none;
+                outline: none;
+            }
+
+                #apimatic-widget.dark .header-docs h4 button:hover,
+                #apimatic-widget.dark .header-docs h4 button:focus {
+                    background: #00c14a;
+                }
+
+        #apimatic-widget.dark .header-docs p {
+        }
+
+        #apimatic-widget.dark .header-docs hr {
+            border-top: 1px solid #0d0d0d;
+        }
+        /*====== .DOCS-HEADER STYLE ENDS ======*/
+
+        /*==== DARK THEME Styles STARTS ====*/
+
+
+
+        /*==================================================================================================*/
+        /*DOCUMENTATION STYLE DOCUMENTATION STYLE DOCUMENTATION STYLE DOCUMENTATION STYLE*/
+        /*==================================================================================================*/
+        /*====== DARK THEME .DOCS-CONTENT STYLE STARTS ======*/
+        /*HEADINGS STYLE STARTS*/
+
+        #apimatic-widget.dark .docs-content h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #apimatic-widget.dark .docs-content h2 {
+            font-size: 22px;
+        }
+
+        #apimatic-widget.dark .docs-content h3 {
+            font-size: 20px;
+        }
+
+            #apimatic-widget.dark .docs-content h3 img {
+                margin: -3.2px 0 0 0;
+                width: 100%;
+            }
+
+        #apimatic-widget.dark .docs-content h4 {
+            font-size: 18px;
+            line-height: 40px;
+        }
+
+            #apimatic-widget.dark .docs-content h4 img {
+                margin: -3.2px 0 0 0;
+                width: 100%;
+            }
+
+        #apimatic-widget.dark .docs-content h5 {
+            color: #848484;
+        }
+
+        #apimatic-widget.dark .docs-content h6 {
+            color: #848484;
+        }
+        /*HEADINGS STYLE ENDS*/
+
+        #apimatic-widget.dark .docs-content p {
+        }
+
+            #apimatic-widget.dark .docs-content p code {
+            }
+
+            #apimatic-widget.dark .docs-content p img,
+            #apimatic-widget .docs-content ul li img {
+                width: 100%;
+            }
+
+        #apimatic-widget.dark .docs-content a {
+            color: #0096ff;
+        }
+
+        #apimatic-widget.dark .docs-content pre {
+            padding: 0px;
+            border: 1px solid #0c0c0c;
+            background: none;
+        }
+
+        #apimatic-widget.dark .docs-content blockquote {
+            border-color: #0096ff;
+        }
+
+        /*ORDERED LIST STYLE*/
+        #apimatic-widget.dark .docs-content ol {
+        }
+
+            #apimatic-widget.dark .docs-content ol li {
+            }
+
+        /*UNORDERED LIST STYLE*/
+        #apimatic-widget.dark .docs-content ul {
+        }
+
+            #apimatic-widget.dark .docs-content ul li {
+            }
+
+        /*TABLE STYLE*/
+        #apimatic-widget.dark .docs-content table {
+            width: 100%;
+            border-top: 1px solid #0b0b0b;
+            border-bottom: 1px solid #0b0b0b;
+            margin: 10px 0;
+        }
+
+            #apimatic-widget.dark .docs-content table thead {
+            }
+
+                #apimatic-widget.dark .docs-content table thead tr th {
+                    padding-bottom: 15px;
+                }
+
+                #apimatic-widget.dark .docs-content table thead tr th, #apimatic-widget.dark .docs-content table tbody tr td {
+                    padding: 5px 30px 5px 10px;
+                }
+
+            #apimatic-widget.dark .docs-content table tbody tr {
+            }
+
+                #apimatic-widget.dark .docs-content table tbody tr:nth-child(2n+1) {
+                    background: #181818;
+                }
+
+            #apimatic-widget.dark .docs-content table code {
+                display: inline-block;
+                margin: 2px 0;
+            }
+
+    /********======= DARK THEME .DOCS-CONTENT ENDS =========********/
+
+
+
+
+    /*====== LIGHT THEME .DOCS-CONTENT STYLE STARTS ======*/
+
+    /*HEADINGS STYLE STARTS*/
+    #apimatic-widget.light .docs-content h1 {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    #apimatic-widget.light .docs-content h2 {
+        font-size: 22px;
+    }
+
+    #apimatic-widget.light .docs-content h3 {
+        font-size: 20px;
+    }
+
+        #apimatic-widget.light .docs-content h3 img {
+            width: 100%;
+            margin: -3.2px 0 0 0;
+        }
+
+    #apimatic-widget.light .docs-content h4 {
+        font-size: 18px;
+        line-height: 40px;
+    }
+
+        #apimatic-widget.light .docs-content h4 img {
+            width: 100%;
+            margin: -3.2px 0 0 0;
+        }
+
+    #apimatic-widget.light .docs-content h5 {
+    }
+
+    #apimatic-widget.light .docs-content h6 {
+    }
+    /*HEADINGS STYLE ENDS*/
+
+    #apimatic-widget.light .docs-content p {
+    }
+
+        #apimatic-widget.light .docs-content p code {
+        }
+
+        #apimatic-widget.light .docs-content p img {
+            width: 100%;
+        }
+
+    #apimatic-widget.light .docs-content a {
+        color: #0096ff;
+    }
+
+    #apimatic-widget.light .docs-content pre {
+        padding: 0px;
+        background: #f3f3f4;
+        border: 1px solid #d9dee5;
+    }
+
+    #apimatic-widget.light .docs-content blockquote {
+        border-color: #0096ff;
+    }
+
+    /*ORDERED LIST STYLE*/
+    #apimatic-widget.light .docs-content ol {
+    }
+
+        #apimatic-widget.light .docs-content ol li {
+        }
+
+    /*UNORDERED LIST STYLE*/
+    #apimatic-widget.light .docs-content ul {
+    }
+
+        #apimatic-widget.light .docs-content ul li {
+        }
+
+    /*TABLE STYLE*/
+    #apimatic-widget.light .docs-content table {
+        width: 100%;
+        border-top: 1px solid #f3f3f4;
+        border-bottom: 1px solid #f3f3f4;
+        margin: 10px 0;
+    }
+
+        #apimatic-widget.light .docs-content table thead {
+        }
+
+            #apimatic-widget.light .docs-content table thead tr th {
+                padding-bottom: 15px;
+            }
+
+            #apimatic-widget.light .docs-content table thead tr th, #apimatic-widget.light .docs-content table tbody tr td {
+                padding: 5px 30px 5px 10px;
+            }
+
+        #apimatic-widget.light .docs-content table tbody tr {
+        }
+
+            #apimatic-widget.light .docs-content table tbody tr:nth-child(2n+1) {
+                background: #f3f3f4;
+            }
+
+        #apimatic-widget.light .docs-content table code {
+            display: inline-block;
+            margin: 2px 0;
+        }
+/*====== LIGHT THEME .DOCS-CONTENT ENDS ======*/
+/*===================================================================================*/

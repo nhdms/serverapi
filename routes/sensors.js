@@ -13,10 +13,10 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/:id', (req, res, next) => {
+router.get('/info', (req, res, next) => {
   // res.json(req.params.id);
-  Sensor.findById(req.params.id, (err, result) => {
-    if (err || !result.name) return res.json({ success: false, msg: "Sensor not found" });
+  Sensor.findById(req.query.id, (err, result) => {
+    if (err || !result || !result.name) return res.json({ success: false, msg: "Sensor not found" });
     return res.json({success:false, data : result});
   });
 });

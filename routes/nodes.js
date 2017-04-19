@@ -69,10 +69,10 @@ router.get('/follow', (req, res, next) => {
   }
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/info', (req, res, next) => {
   // res.json(req.params.id);
-  Node.findById(req.params.id, (err, result) => {
-    if (err || !result.name) return res.json({ success: false, msg: "Node not found" });
+  Nodes.findById(req.query.id, (err, result) => {
+    if (err || !result || !result.name) return res.json({ success: false, msg: "Node not found" });
     Utils.getLocationById(result.locationId, (e, r) => {
       if (e) return res.json({ success: false, msg: "Cannot get location for this root" });
       result.locationId = r;
