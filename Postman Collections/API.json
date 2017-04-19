@@ -14,6 +14,12 @@
       "item": []
     },
     {
+      "_postman_id": "bbcaccca-f411-c93f-bd45-9eec996c29e0",
+      "name": "Sensor",
+      "description": "",
+      "item": []
+    },
+    {
       "_postman_id": "2b402ef4-bb3a-d37f-2409-2896e40dc5b5",
       "name": "Register",
       "request": {
