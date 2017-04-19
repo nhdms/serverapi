@@ -416,7 +416,7 @@
             "method": "GET",
             "header": [],
             "body": {},
-            "description": ""
+            "description": "Get sensor info"
           },
           "response": []
         }
