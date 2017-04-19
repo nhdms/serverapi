@@ -1,0 +1,385 @@
+{
+  "variables": [],
+  "info": {
+    "name": "API",
+    "_postman_id": "8909d16a-11a3-6fca-d47e-15babbf36b47",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "2b402ef4-bb3a-d37f-2409-2896e40dc5b5",
+      "name": "Register",
+      "request": {
+        "url": "localhost:8080/users/register",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "c2",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "password",
+              "value": "2345678w",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "email",
+              "value": "c@con3lon.com",
+              "type": "text",
+              "enabled": true
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "a78e8b3b-c0f4-0b66-f375-fc37033ca8a6",
+      "name": "Login",
+      "request": {
+        "url": "localhost:8080/users/login",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "a",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "password",
+              "value": "1",
+              "type": "text",
+              "enabled": true
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "86893bd3-15dc-9f1a-b6d6-70c279ede73c",
+      "name": "Location -- add",
+      "request": {
+        "url": "localhost:8080/locations/add",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "name",
+              "value": "PTIT",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "address",
+              "value": "Hanoi",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "longtitude",
+              "value": "123533",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "latitude",
+              "value": "4583564",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU",
+              "type": "text",
+              "enabled": true
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "a6bbf347-4240-9a0d-761e-d786ad062d27",
+      "name": "Location -- get",
+      "request": {
+        "url": "localhost:8080/locations/58f4ff5d632b7617c02a2654?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "e74be0ea-8110-fb3a-5388-1ff7072acdcc",
+      "name": "Root -- get",
+      "request": {
+        "url": "localhost:8080/roots/58f50bd0a178161e3c57ba6a?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU",
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "description": ""
+          },
+          {
+            "key": "//token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU",
+            "description": "",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "name",
+              "value": "RasperyPi 3",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "locationId",
+              "value": "58f4ff5d632b7617c02a2654e",
+              "type": "text",
+              "enabled": true
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "42c382bc-10c2-c97c-28cb-2cda2e783c1f",
+      "name": "Root -- add",
+      "request": {
+        "url": "localhost:8080/roots/",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "name",
+              "value": "RasperyPi 3",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "locationId",
+              "value": "58f4ff5d632b7617c02a2654e",
+              "type": "text",
+              "enabled": true
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "097e979d-d5b1-8e43-295c-d8cb0e240071",
+      "name": "Sensor -- add",
+      "request": {
+        "url": "localhost:8080/sensors/add",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "name",
+              "value": "MQ135",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "description",
+              "value": "Do khong khi",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "type",
+              "value": "hum",
+              "type": "text",
+              "enabled": true
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "7945c0fc-6bdd-f83d-a27c-929d14ea5524",
+      "name": "Sensor -- get",
+      "request": {
+        "url": "localhost:8080/sensors/58e32e32090bcc048cd11abb?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "6a46f481-85fa-7283-48d6-98f33ac0d24c",
+      "name": "Data -- get chart values",
+      "request": {
+        "url": "localhost:8080/data3/chart?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU&start=1359651600000&end=1559651600000&sensor=[\"hum\", \"temp\", \"aqi\"]&nodeId=58e32f3cb7b33f32e4b25271",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "c2832711-39b1-b064-3ad4-04ddf860767c",
+      "name": "Node -- add",
+      "request": {
+        "url": "localhost:8080/nodes/add",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "name",
+              "value": "cc",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "component",
+              "value": "[\"58e32e32090bcc048cd11abb\"]",
+              "type": "text",
+              "enabled": true
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "fa5ae000-2b99-3c74-4cb8-c332b2395b41",
+      "name": "Node -- follow",
+      "request": {
+        "url": "localhost:8080/nodes/follow?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU&deviceId=58e32f3cb7b33f32e4b25271",
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicGFzc3dvcmQiOiJpbml0IiwidXNlcm5hbWUiOiJpbml0IiwiX192IjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJ1c2VybmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwiZW1pdHRlciI6eyJkb21haW4iOm51bGwsIl9ldmVudHMiOnt9LCJfZXZlbnRzQ291bnQiOjAsIl9tYXhMaXN0ZW5lcnMiOjB9fSwiaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9fdiI6MCwiZW1haWwiOiJjQGNvbmxvbi5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQwVjMvMjNlTXQzck5EcTF2RzBoNkl1QUN1d2xBN0ZFOW5kdzNDTWVwU0E2ZlpXSGNUV1hVeSIsInVzZXJuYW1lIjoiYSIsIl9pZCI6IjU4ZjRlYWQ1NGNjZGU5MjE2NDcwZjQwYSJ9LCJpYXQiOjE0OTI0NTM1Njd9.CPghWtbDxC0I1Fd_kAp_dIYxxaaZ1wa9H6UymAKMpfU",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "name",
+              "value": "cc",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "component",
+              "value": "[\"58e32e32090bcc048cd11abb\"]",
+              "type": "text",
+              "enabled": true
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    }
+  ]
+}
