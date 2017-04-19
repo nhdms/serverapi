@@ -435,7 +435,7 @@
             "method": "GET",
             "header": [],
             "body": {},
-            "description": ""
+            "description": "Get value to build chart"
           },
           "response": []
         }
