@@ -8,6 +8,12 @@
   },
   "item": [
     {
+      "_postman_id": "07a109ae-4ae8-b34d-de81-075e4ff54919",
+      "name": "User",
+      "description": "",
+      "item": []
+    },
+    {
       "_postman_id": "2b402ef4-bb3a-d37f-2409-2896e40dc5b5",
       "name": "Register",
       "request": {
