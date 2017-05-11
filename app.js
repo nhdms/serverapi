@@ -135,7 +135,7 @@ var port = process.env.PORT || 8080;        // set our port
 // var io = require('socket.io')(socketIOApp);
 
 var server = require('http').Server(app);
-var io = require('socket.io')(server,  {origins:'localhost:* http://localhost:*'});
+var io = require('socket.io')(server,  {log:false, origins:'*:*'});
 // var fs = require('fs');
 
 // socketIOApp.listen(8081, function() {console.log('Socket on port 8081' )});
