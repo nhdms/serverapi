@@ -135,7 +135,7 @@ var socketIOApp = require('http').createServer(handler)
 var io = require('socket.io')(socketIOApp);
 // var fs = require('fs');
 
-socketIOApp.listen(8081);
+socketIOApp.listen(port + 1);
 
 function handler(req, res) {
   res.end("Happy coding");
