@@ -45,9 +45,6 @@ app.use(cookieParser());
 //   err.status = 404;
 //   next(err);
 // });
-app.use('/', index);
-app.use('/users', users);
-
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
@@ -66,6 +63,9 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+
+app.use('/', index);
+app.use('/users', users);
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -123,12 +123,111 @@ app.use('/data', data);
 app.use('/locations', locations);
 app.get('*', (req, res) => {
   // res.json({message : "wassup"});
-   return res.status(404).json({
-      success: false,
-      message: 'What???'
-    });
+  return res.status(404).json({
+    success: false,
+    message: 'What???'
+  });
 })
 var port = process.env.PORT || 8080;        // set our port
+
+// SOcket IO
+var socketIOApp = require('http').createServer(handler)
+var io = require('socket.io')(socketIOApp);
+// var fs = require('fs');
+
+socketIOApp.listen(8081);
+
+function handler(req, res) {
+  res.end("Happy coding");
+}
+
+// console.log(port);
+
+function getRandomArbitrary(min, max) {
+  return parseFloat((Math.random() * (max - min) + min).toFixed(1));
+}
+
+io.on('connection', function (socket) {
+  var now = Date.now();
+  var temp = {
+    time: {
+      exec: now - 1000,
+      upload: now
+    },
+    value: getRandomArbitrary(28, 39),
+    unit: String.fromCharCode(176) + 'C',
+    type: 'temp'
+  };
+  now = Date.now();
+
+  var hum = {
+    time: {
+      exec: now - 1000,
+      upload: now
+    },
+    value: getRandomArbitrary(60, 100),
+    unit: '%',
+    type: 'hum'
+  };
+
+  now = Date.now();
+  var aqi = {
+    time: {
+      exec: now - 1000,
+      upload: now
+    },
+    value: getRandomArbitrary(3, 6),
+    unit: '%',
+    type: 'aqi'
+  };
+
+
+  
+  socket.emit('news', { hello: 'world' });
+  socket.on('get_index', function (data) {
+    // console.log(data);
+    // var current = Date.now();
+    
+    setInterval(() => {
+      // setTimeout(() => {
+      //   temp.current = current;
+      //   socket.emit('get_index', temp);
+      // }, 0);
+
+      // setTimeout(() => {
+      //   hum.current = current;
+      //   socket.emit('get_index', hum);
+      // }, 300);
+
+      // setTimeout(() => {
+      //   aqi.current = current;
+      //   socket.emit('get_index', aqi);
+      // }, 800);
+      var all = {
+    time: {
+      exec: now - 1000,
+      upload: now
+    },
+    values: {
+      aqi: {
+        value: getRandomArbitrary(3, 6),
+        unit: '%',
+      },
+      hum: {
+        value: getRandomArbitrary(60, 100),
+        unit: '%',
+      },
+      temp: {
+        value: getRandomArbitrary(25, 38),
+        unit: String.fromCharCode(176) + 'C',
+      }
+    }
+    // type : 'aqi'    
+  };
+      socket.emit('get_index', all);
+    }, 1000);
+  });
+});
 
 // app.use('/api', router);
 
