@@ -133,9 +133,8 @@ var port = process.env.PORT || 8080;        // set our port
 // SOcket IO
 // var socketIOApp = require('http').createServer(handler)
 // var io = require('socket.io')(socketIOApp);
-
-var server = require('http').Server(app);
-var io = require('socket.io')(server,  {log:false, origins:'*:*'});
+server = require('http').createServer(app),
+io = require('socket.io').listen(server);
 // var fs = require('fs');
 
 // socketIOApp.listen(8081, function() {console.log('Socket on port 8081' )});
@@ -241,5 +240,5 @@ io.on('connection', function (socket) {
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
+server.listen(port);
 console.log('Magic happens on port' + port);
