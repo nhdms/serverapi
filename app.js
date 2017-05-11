@@ -232,7 +232,7 @@ io.on('connection', function (socket) {
     // type : 'aqi'    
   };
       socket.emit('get_index', all);
-    }, 1000);
+    }, 5000);
   });
 });
 
