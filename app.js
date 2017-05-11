@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser');
 // var router = require('./routes/api');
 var path = require('path');
 
-mongoose.connect('mongodb://localhost:27017/demo', (e) => {
+mongoose.connect('mongodb://root:12345679@ds137281.mlab.com:37281/heroku_jz559sxc', (e) => {
   if (e) return console.log(e);
   console.log("Mongo connected");
 });
@@ -26,7 +26,7 @@ var sensors = require('./routes/sensors');
 var data = require('./routes/data');
 var locations = require('./routes/locations');
 var jwt = require('jsonwebtoken');
-var config = require('../config/token');
+var config = require('./config/token');
 app.set('superSecret', config.secret);
 
 // view engine setup
