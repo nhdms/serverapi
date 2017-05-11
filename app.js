@@ -131,15 +131,18 @@ app.get('*', (req, res) => {
 var port = process.env.PORT || 8080;        // set our port
 
 // SOcket IO
-var socketIOApp = require('http').createServer(handler)
-var io = require('socket.io')(socketIOApp);
+// var socketIOApp = require('http').createServer(handler)
+// var io = require('socket.io')(socketIOApp);
+
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 // var fs = require('fs');
 
-socketIOApp.listen(8081, function() {console.log('Socket on port 8081' )});
+// socketIOApp.listen(8081, function() {console.log('Socket on port 8081' )});
 
-function handler(req, res) {
-  res.end("Happy coding");
-}
+// function handler(req, res) {
+//   res.end("Happy coding");
+// }
 
 // console.log(port);
 
