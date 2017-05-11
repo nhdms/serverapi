@@ -147,10 +147,10 @@ function getRandomArbitrary(min, max) {
   return parseFloat((Math.random() * (max - min) + min).toFixed(1));
 }
 
-io.configure(function () {  
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
-});
+//io.configure(function () {  
+ // io.set("transports", ["xhr-polling"]); 
+  //io.set("polling duration", 10); 
+//});
 
 io.on('connection', function (socket) {
   var now = Date.now();
