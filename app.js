@@ -192,25 +192,7 @@ io.on('connection', function (socket) {
   
   socket.emit('news', { hello: 'world' });
   socket.on('get_index', function (data) {
-    // console.log(data);
-    // var current = Date.now();
-    
-    setInterval(() => {
-      // setTimeout(() => {
-      //   temp.current = current;
-      //   socket.emit('get_index', temp);
-      // }, 0);
-
-      // setTimeout(() => {
-      //   hum.current = current;
-      //   socket.emit('get_index', hum);
-      // }, 300);
-
-      // setTimeout(() => {
-      //   aqi.current = current;
-      //   socket.emit('get_index', aqi);
-      // }, 800);
-      var all = {
+     var all = {
     time: {
       exec: now - 1000,
       upload: now
@@ -231,6 +213,28 @@ io.on('connection', function (socket) {
     }
     // type : 'aqi'    
   };
+    socket.emit('get_index', all);
+    // console.log(data);
+    // var current = Date.now();
+    
+    setInterval(() => {
+      // setTimeout(() => {
+      //   temp.current = current;
+      //   socket.emit('get_index', temp);
+      // }, 0);
+
+      // setTimeout(() => {
+      //   hum.current = current;
+      //   socket.emit('get_index', hum);
+      // }, 300);
+
+      // setTimeout(() => {
+      //   aqi.current = current;
+      //   socket.emit('get_index', aqi);
+      // }, 800);
+     all.values.temp.value = getRandomArbitrary(28,32);
+       all.values.hum.value = getRandomArbitrary(70,80);
+       all.values.aqi.value = getRandomArbitrary(3,5);
       socket.emit('get_index', all);
     }, 5000);
   });
