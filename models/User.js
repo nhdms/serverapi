@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
@@ -17,7 +17,7 @@ var UserSchema = new Schema({
     address : String,
     phone : String,
     email : String,
-    roles : Number
+    roles : [String]
 });
 
 UserSchema.pre('save', function(next) {
@@ -31,6 +31,7 @@ UserSchema.pre('save', function(next) {
             // console.log(h);
             if (e) return next(e);
             user.password = h;
+            user.roles = ['user'];
             next();
         });
     });

@@ -1,5 +1,6 @@
 var Location = require('../models/Location');
 var Root = require('../models/Root');
+var Node = require('../models/Node');
 var Sensor = require('../models/Sensor');
 module.exports.validateEmail = (email) => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -17,13 +18,38 @@ module.exports.validateLocation = (lid, cb) => {
     });
 }
 
+module.exports.validateRoot = (rid, cb) => {
+    Root.findById(rid, (err, result) => {
+        if (err) return cb(err);
+        else cb(null, result);
+    });
+}
+
+module.exports.validateNode = (nid, cb) => {
+    Node.findById(nid, (err, result) => {
+        if (err) return cb(err);
+        else cb(null, result);
+    });
+}
+
+module.exports.validateSensor = (sid, cb) => {
+    Sensor.findById(sid, (err, result) => {
+        if (err) return cb(err);
+        else cb(null, result);
+    });
+}
+
 module.exports.getLocationById = (lid, cb) => {
     Location.findById(lid, cb);
 }
 
 
 module.exports.getRootById = (rid, cb) => {
-    Root.findById(lid, cb);
+    Root.findById(rid, cb);
+}
+
+module.exports.getNodeById = (rid, cb) => {
+    Node.findById(rid, cb);
 }
 
 module.exports.getSensorById = (sid, cb) => {

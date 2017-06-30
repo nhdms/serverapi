@@ -12,12 +12,6 @@ var cookieParser = require('cookie-parser');
 // var router = require('./routes/api');
 var path = require('path');
 
-mongoose.connect('mongodb://root:12345679@ds137281.mlab.com:37281/heroku_jz559sxc', (e) => {
-  if (e) return console.log(e);
-  console.log("Mongo connected");
-});
-
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var nodes = require('./routes/nodes');
@@ -27,29 +21,26 @@ var data = require('./routes/data');
 var locations = require('./routes/locations');
 var jwt = require('jsonwebtoken');
 var config = require('./config/token');
+
+app.set('env', 'dev'); // set enviroment
+
+
+config = config[app.get('env')];
 app.set('superSecret', config.secret);
+// console.log(app.get('superSecret'));
+mongoose.connect(config.dbURL, (e) => {
+  if (e) return console.log(e);
+  console.log("Mongo connected");
+});
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');1
-
-// configure app to use bodyParser()
-// this will let us get the data from a POST
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.use(function(req, res, next) {
-//   var err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
 app.use(function (req, res, next) {
-
-  // Website you wish to allow to connect
+  // var allowedOrigins = ['http://localhost:3000'];
+  // var origin = req.headers.origin;
+  // if (allowedOrigins.indexOf(origin) > -1) {
+  //   res.setHeader('Access-Control-Allow-Origin', origin);
+  // }
+  // console.log('access url: ' + req.url);
   res.setHeader('Access-Control-Allow-Origin', '*');
-
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
@@ -59,10 +50,18 @@ app.use(function (req, res, next) {
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
   res.setHeader('Access-Control-Allow-Credentials', true);
-
-  // Pass to next layer of middleware
+  res.setTimeout(120000, function () {
+    console.log('Request has timed out.');
+    return res.send(408);
+  });
   next();
 });
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(cookieParser());
 
 app.use('/', index);
 app.use('/users', users);
@@ -78,41 +77,35 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-// Request timeout
-app.use(function (req, res, next) {
-  res.setTimeout(120000, function () {
-    console.log('Request has timed out.');
-    res.send(408);
-  });
-
-  next();
-});
 
 app.use((req, res, next) => {
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-  if (token) {
+  if ('OPTIONS' !== req.method) {
+    var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+    if (token) {
+      // verifies secret and checks exp
+      jwt.verify(token, app.get('superSecret'), function (err, decoded) {
+        if (err) {
+          return res.json({ success: false, message: 'Failed to authenticate token.' });
+        } else {
+          // if everything is good, save to request for use in other routes
+          req.decoded = decoded;
+          // console.log(decoded);
+          next();
+        }
+      });
 
-    // verifies secret and checks exp
-    jwt.verify(token, app.get('superSecret'), function (err, decoded) {
-      if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });
-      } else {
-        // if everything is good, save to request for use in other routes
-        req.decoded = decoded;
-        // console.log(decoded);
-        next();
-      }
-    });
+    } else {
 
+      // if there is no token
+      // return an error
+      return res.status(403).json({
+        success: false,
+        message: 'No token provided.'
+      });
+
+    }
   } else {
-
-    // if there is no token
-    // return an error
-    return res.status(403).json({
-      success: false,
-      message: 'No token provided.'
-    });
-
+    next();
   }
 });
 
@@ -128,13 +121,13 @@ app.get('*', (req, res) => {
     message: 'What???'
   });
 })
-var port = process.env.PORT || 8080;        // set our port
+var port = process.env.PORT || 8081;        // set our port
 
 // SOcket IO
 // var socketIOApp = require('http').createServer(handler)
 // var io = require('socket.io')(socketIOApp);
 server = require('http').createServer(app),
-io = require('socket.io').listen(server);
+  io = require('socket.io').listen(server);
 // var fs = require('fs');
 
 // socketIOApp.listen(8081, function() {console.log('Socket on port 8081' )});
@@ -150,94 +143,28 @@ function getRandomArbitrary(min, max) {
 }
 
 //io.configure(function () {  
- // io.set("transports", ["xhr-polling"]); 
-  //io.set("polling duration", 10); 
+// io.set("transports", ["xhr-polling"]); 
+//io.set("polling duration", 10); 
 //});
 
 io.on('connection', function (socket) {
-  var now = Date.now();
-  var temp = {
-    time: {
-      exec: now - 1000,
-      upload: now
-    },
-    value: getRandomArbitrary(28, 39),
-    unit: String.fromCharCode(176) + 'C',
-    type: 'temp'
-  };
-  now = Date.now();
-
-  var hum = {
-    time: {
-      exec: now - 1000,
-      upload: now
-    },
-    value: getRandomArbitrary(60, 100),
-    unit: '%',
-    type: 'hum'
-  };
-
-  now = Date.now();
-  var aqi = {
-    time: {
-      exec: now - 1000,
-      upload: now
-    },
-    value: getRandomArbitrary(3, 6),
-    unit: '%',
-    type: 'aqi'
-  };
-
-
-  
-  socket.emit('news', { hello: 'world' });
-  socket.on('get_index', function (data) {
-     var all = {
-    time: {
-      exec: now - 1000,
-      upload: now
-    },
-    values: {
-      aqi: {
-        value: getRandomArbitrary(3, 6),
-        unit: '%',
-      },
-      hum: {
-        value: getRandomArbitrary(60, 100),
-        unit: '%',
-      },
-      temp: {
-        value: getRandomArbitrary(25, 38),
-        unit: String.fromCharCode(176) + 'C',
-      }
+  console.log(socket.id + ' has connected!');
+  socket.on('get_index', function(){
+    var ran = function (min, max) {
+      return parseFloat((Math.random() * (max - min) + min).toFixed(1));
     }
-    // type : 'aqi'    
-  };
-    socket.emit('get_index', all);
-    // console.log(data);
-    // var current = Date.now();
-    
-    setInterval(() => {
-      // setTimeout(() => {
-      //   temp.current = current;
-      //   socket.emit('get_index', temp);
-      // }, 0);
 
-      // setTimeout(() => {
-      //   hum.current = current;
-      //   socket.emit('get_index', hum);
-      // }, 300);
-
-      // setTimeout(() => {
-      //   aqi.current = current;
-      //   socket.emit('get_index', aqi);
-      // }, 800);
-     all.values.temp.value = getRandomArbitrary(28,32);
-       all.values.hum.value = getRandomArbitrary(70,80);
-       all.values.aqi.value = getRandomArbitrary(3,5);
-      socket.emit('get_index', all);
-    }, 5000);
-  });
+    setInterval(function () {
+      var n = new Date();
+      var val = {
+        date: n,
+        temp: ran(26, 30),
+        hum: ran(60, 65),
+        aqi: ran(1, 2)
+      }
+      io.sockets.to(socket.id).emit('get_index', val);
+    }, 3000);
+  })
 });
 
 // app.use('/api', router);

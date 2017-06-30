@@ -5,11 +5,6 @@ var NodeSchema = new Schema({
 	name: String,
 	description: String,
 	rootId: String,
-	component: {
-		temp: String,
-		hum: String,
-		aqi: String,
-	}
 });
 
 NodeSchema.methods.findByIds = (ids, cb) => {

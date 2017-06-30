@@ -3,20 +3,27 @@ var router = express.Router();
 var User = require('../models/User');
 var Utils = require('../Util/Utils');
 var jwt = require('jsonwebtoken');
-var config = require('../config/token');
+// var config = require('../config/token');
 
+// console.log(app);
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   // res.send('respond with a resource');
+  // console.log(req.app)
   res.json({ message: "nothing here", success: false });
 });
 
 
 router.post('/login', (req, res, next) => {
-  var username = req.body.username || "";
+  var username = req.body.username || req.body.email || "";
   var password = req.body.password || "";
   if ("" == username || "" == password) return res.json({ success: false, msg: "User or password is required" });
-  User.findOne({ username: username }, (err, user) => {
+  User.findOne({
+    $or: [
+      { username: username },
+      { email: username }
+    ]
+  }, (err, user) => {
     if (err) return res.json(err);
     if (!user) {
       return res.json({ success: false, msg: "Authentication failed. User not found!" });
@@ -25,9 +32,12 @@ router.post('/login', (req, res, next) => {
       user.comparePassword(password, (err, isMatch) => {
         // console.log(err, isMatch)
         if (isMatch && !err) {
-          var token = jwt.sign(user._doc, config.secret);
+          var token = jwt.sign(user._doc, req.app.get('superSecret'));
           // req.
-          res.json({ success: true, token: token });
+          var info = user._doc;
+          delete info.password;
+          delete info.__v;
+          res.json({ success: true, token: token, info : info });
         } else {
           res.json({ success: false, msg: "Authentication failed. Wrong password" })
         }

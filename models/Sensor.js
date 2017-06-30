@@ -4,7 +4,8 @@ var Schema       = mongoose.Schema;
 var SensorSchema   = new Schema({
 	name : String,
 	type : String,
-	description : String
+	description : String,
+    nodeId : String
 });
 
 module.exports = mongoose.model('sensor', SensorSchema);

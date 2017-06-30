@@ -12,7 +12,7 @@ var DataSchema   = new Schema({
 		aqi: Number
 	},
 	nid : String
-});
+}, {strict: false});
 
 module.exports = mongoose.model('data', DataSchema);
 

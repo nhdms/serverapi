@@ -16,11 +16,19 @@ router.get('/', function (req, res, next) {
 router.get('/info', (req, res, next) => {
     // res.json(req.params.id);
     var id = req.query.id;
-    Location.findById(id, (err, result) => {
-        // res.json({});
-        if (err) return res.json({success: false, msg : err.message || err});
-        return res.json({success : true, data : result});
-    });
+    if (id) { 
+        Location.findById(id, (err, result) => {
+            // res.json({});
+            if (err) return res.json({success: false, msg : err.message || err});
+            return res.json({success : true, data : result});
+        });
+    } else {
+        Location.find({}, (err, result) => {
+            // res.json({});
+            if (err) return res.json({ success: false, msg: err.message || err });
+            return res.json({ success: true, data: result });
+        });
+    }
 });
 
 

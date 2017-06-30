@@ -71,14 +71,18 @@ router.get('/follow', (req, res, next) => {
 
 router.get('/info', (req, res, next) => {
   // res.json(req.params.id);
-  Root.findById(req.query.id, (err, result) => {
-    if (err || !result || !result.name) return res.json({ success: false, msg: "Root not found" });
-    Utils.getLocationById(result.locationId, (e, r) => {
-      if (e) return res.json({ success: false, msg: "Cannot get location for this root" });
-      result.locationId = r;
+  var id = req.query.id;
+  if (id) {
+    Root.findById(req.query.id, (err, result) => {
+      if (err || !result || !result.name) return res.json({ success: false, msg: "Root not found" });
       return res.json({ success: true, data: result });
     });
-  });
+  } else {
+    Root.find(req.query.id, (err, result) => {
+      if (err || !result) return res.json({ success: false, msg: "Root not found" });
+      return res.json({ success: true, data: result });
+    });
+  }
 });
 
 
