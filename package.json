@@ -6,19 +6,15 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "angular-chart.js": "^1.1.1",
+    "bcrypt": "^1.0.3",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
     "express": "~4.15.2",
-    "jade": "~1.11.0",
     "jsonwebtoken": "^7.3.0",
-    "mongodb": "^2.2.25",
-    "monk": "^4.0.0",
+    "mongoose": "*",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2",
-    "socket.io": "^1.7.3",
-    "mongoose" : "*",
-    "bcrypt" : "*"
+    "mosca": "^2.5.2",
+    "request": "^2.81.0",
+    "serve-favicon": "~2.4.2"
   }
 }

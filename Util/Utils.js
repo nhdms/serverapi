@@ -56,6 +56,10 @@ module.exports.getSensorById = (sid, cb) => {
     Sensor.findById(sid, cb);
 }
 
+module.exports.getSafeRange = function (type) {
+    return (1 == type) ? [26, 32] : (2 == type) ? [2, 5] : [40 - 70];
+}
+
 // {
 //     validPassword : "password's length must have a minimum of 8 and a maximum of 30 characters respectively",
 //     validatePassword: function(pass){
