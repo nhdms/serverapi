@@ -1,0 +1,706 @@
+<html>
+
+<head>
+    <link id="bootstrap-css" rel="stylesheet" type="text/css" href="./PreviewWidget_files/bootstrap-navs.css" media="all">
+    <link id="highlight-css" rel="stylesheet" type="text/css" href="./PreviewWidget_files/highlight-js-darcula.css" media="all">
+    <link id="widget-css" rel="stylesheet" type="text/css" href="./PreviewWidget_files/generic-widget-extended.css" media="all">
+</head>
+
+<body>
+    <div class="light" id="apimatic-widget">
+
+        <div class="">
+
+
+
+            <div>
+
+                <div class="panel-right panel-right-position-reset">
+
+                    <!--NAVIGATION CONTENT STARTS-->
+                    <div class="">
+                        <div class="tab-content">
+                            <div id="docs-http" class="tab-pane fade active in">
+
+
+
+                                <div>
+                                    <div class="docs-content">
+                                        <h1 id=""> </h1>
+                                        <p>AQI Server API v 1.0</p>
+                                        <h2 id="anameapi_referenceaapireference">API Reference</h2>
+                                        <ul>
+                                            <li><a href="#sensor">Sensor</a></li>
+                                            <li><a href="#anamenodeaendpointgrouphttpsapidocsioimgclasspngnodenode">Node</a></li>
+                                            <li><a href="#anamelocationaendpointgrouphttpsapidocsioimgclasspnglocationlocation">Location</a></li>
+                                            <li><a href="#anamedataaendpointgrouphttpsapidocsioimgclasspngdatadata">Data</a></li>
+                                            <li><a href="#anamerootaendpointgrouphttpsapidocsioimgclasspngrootroot">Root</a></li>
+                                            <li><a href="#anameuseraendpointgrouphttpsapidocsioimgclasspnguseruser">User</a></li>
+                                        </ul>
+                                        <h3 id="anamesensoraendpointgrouphttpsapidocsioimgclasspngsensorsensor"> Sensor</h3>
+                                        <h4 id="anamesensor____getaendpointhttpsapidocsioimgmethodpngsensorgetgetsensorsinfo"> GET /sensors/info</h4>
+                                        <blockquote>
+                                            <p>Get sensor info</p>
+                                        </blockquote>
+                                        <h5 id="queryparameters">Query Parameters</h5>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>token</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>user's token</td>
+                                                    <td><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>id</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>sensor's id</td>
+                                                    <td><code>58e32e32090bcc048cd11abb</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 id="responses">Responses</h5>
+                                        <p><strong>200</strong></p>
+                                        <h4 id="anamesensor____addaendpointhttpsapidocsioimgmethodpngsensoraddpostsensorsadd"> POST /sensors/add</h4>
+                                        <blockquote>
+                                            <p>Add a new sensor</p>
+                                        </blockquote>
+                                        <h5 id="requestheaders">Request Headers</h5>
+                                        <blockquote>
+                                            <p>Content-Type=application/x-www-form-urlencoded;</p>
+                                        </blockquote>
+                                        <h5 id="requestbody">Request Body</h5>
+                                        <p>Url Encoded (application/x-www-form-urlencoded) </p>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>token</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>user's token</td>
+                                                    <td><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>name</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Name of Sensor</td>
+                                                    <td><code>MQ135</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>description</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Optional</code></td>
+                                                    <td>Sensor's description</td>
+                                                    <td><code>Do khong khi</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>type</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Sensor's type</td>
+                                                    <td><code>hum</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 id="responses-1">Responses</h5>
+                                        <p><strong>200</strong></p>
+                                        <p><a href="#api_reference">Back to API Reference</a></p>
+                                        <h3 id="anamenodeaendpointgrouphttpsapidocsioimgclasspngnodenode"> Node</h3>
+                                        <h4 id="anamenode_____getaendpointhttpsapidocsioimgmethodpngnodegetgetnodesinfo"> GET /nodes/info</h4>
+                                        <blockquote>
+                                            <p>Get node info</p>
+                                        </blockquote>
+                                        <h5 id="queryparameters-1">Query Parameters</h5>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>token</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>user's token</td>
+                                                    <td><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>id</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Node's id</td>
+                                                    <td><code>58e32f3cb7b33f32e4b25271</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 id="responses-2">Responses</h5>
+                                        <p><strong>200</strong></p>
+                                        <h4 id="anamenode____addaendpointhttpsapidocsioimgmethodpngnodeaddpostnodesadd"> POST /nodes/add</h4>
+                                        <blockquote>
+                                            <p>Add a new node</p>
+                                        </blockquote>
+                                        <h5 id="queryparameters-2">Query Parameters</h5>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>description</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Optional</code></td>
+                                                    <td>Node's description</td>
+                                                    <td><code>"description"</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 id="requestheaders-1">Request Headers</h5>
+                                        <blockquote>
+                                            <p>Accept=application/json; Content-Type=application/json;charset=utf-8;
+                                            </p>
+                                        </blockquote>
+                                        <h5 id="requestbody-1">Request Body</h5>
+                                        <p>Url Encoded (application/x-www-form-urlencoded) </p>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>token</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>user's token</td>
+                                                    <td><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>name</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Node's name</td>
+                                                    <td><code>cc</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>component</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code> <code>Collection</code></td>
+                                                    <td>Array of sensors</td>
+                                                    <td><code>["58e32e32090bcc048cd11abb"]</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <h5 id="responses-3">Responses</h5>
+                                        <p><strong>200</strong></p>
+                                        <h4 id="anamenode____followaendpointhttpsapidocsioimgmethodpngnodefollowgetnodesfollow"> GET /nodes/follow</h4>
+                                        <blockquote>
+                                            <p>Follow a node</p>
+                                        </blockquote>
+                                        <h5 id="queryparameters-3">Query Parameters</h5>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>token</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>user's token</td>
+                                                    <td><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>deviceId</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Node id</td>
+                                                    <td><code>58e32f3cb7b33f32e4b25271</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 id="requestheaders-2">Request Headers</h5>
+                                        <blockquote>
+                                            <p>Content-Type=application/x-www-form-urlencoded;</p>
+                                        </blockquote>
+                                        <h5 id="responses-4">Responses</h5>
+                                        <p><strong>200</strong></p>
+                                        <p><a href="#api_reference">Back to API Reference</a></p>
+                                        <h3 id="anamelocationaendpointgrouphttpsapidocsioimgclasspnglocationlocation"> Location</h3>
+                                        <h4 id="anamelocation____getaendpointhttpsapidocsioimgmethodpnglocationgetgetlocationsinfo"> GET /locations/info</h4>
+                                        <blockquote>
+                                            <p>Get location info</p>
+                                        </blockquote>
+                                        <h5 id="queryparameters-4">Query Parameters</h5>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>token</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>user's token</td>
+                                                    <td><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>id</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Location id</td>
+                                                    <td><code>58f4ff5d632b7617c02a2654</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 id="responses-5">Responses</h5>
+                                        <p><strong>200</strong></p>
+                                        <h4 id="anamelocation____addaendpointhttpsapidocsioimgmethodpnglocationaddpostlocationsadd"> POST /locations/add</h4>
+                                        <blockquote>
+                                            <p>Add new location</p>
+                                        </blockquote>
+                                        <h5 id="requestheaders-3">Request Headers</h5>
+                                        <blockquote>
+                                            <p>Content-Type=application/x-www-form-urlencoded;</p>
+                                        </blockquote>
+                                        <h5 id="requestbody-2">Request Body</h5>
+                                        <p>Url Encoded (application/x-www-form-urlencoded) </p>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>name</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Location's name</td>
+                                                    <td><code>PTIT</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>address</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Location's address</td>
+                                                    <td><code>Hanoi</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>longtitude</td>
+                                                    <td><code>number</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Location's longtitude</td>
+                                                    <td><code>123533</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>latitude</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Location's latitude</td>
+                                                    <td><code>4583564</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>token</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>user's token</td>
+                                                    <td><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <h5 id="responses-6">Responses</h5>
+                                        <p><strong>200</strong></p>
+                                        <p><a href="#api_reference">Back to API Reference</a></p>
+                                        <h3 id="anamedataaendpointgrouphttpsapidocsioimgclasspngdatadata"> Data</h3>
+                                        <h4 id="anamedata____get_chart_valuesaendpointhttpsapidocsioimgmethodpngdatagetchartvaluesgetdata3chart"> GET /data3/chart</h4>
+                                        <blockquote>
+                                            <p>Get values to build chart</p>
+                                        </blockquote>
+                                        <h5 id="queryparameters-5">Query Parameters</h5>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>token</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>user's token</td>
+                                                    <td><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>sensor</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code> <code>Collection</code></td>
+                                                    <td>Filter sensor to get values</td>
+                                                    <td><code>["hum","temp","aqi"]</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>nodeId</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Node id</td>
+                                                    <td><code>58e32f3cb7b33f32e4b25271</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>start</td>
+                                                    <td><code>datetime</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>timestamp of start date (miliseconds)</td>
+                                                    <td><code>"1492619368"</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>end</td>
+                                                    <td><code>datetime</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>timestamp of end date (milliseconds)</td>
+                                                    <td><code>"1492619368"</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 id="responses-7">Responses</h5>
+                                        <p><strong>200</strong> </p>
+                                        <p>Body </p>
+                                        <pre><code class="hljs json">[]
+</code></pre>
+                                        <p><a href="#api_reference">Back to API Reference</a></p>
+                                        <h3 id="anamerootaendpointgrouphttpsapidocsioimgclasspngrootroot"> Root</h3>
+                                        <h4 id="anameroot____getaendpointhttpsapidocsioimgmethodpngrootgetgetrootsinfo"> GET /roots/info</h4>
+                                        <blockquote>
+                                            <p>Get root info</p>
+                                        </blockquote>
+                                        <h5 id="queryparameters-6">Query Parameters</h5>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>token</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>user's token</td>
+                                                    <td><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>id</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>root id</td>
+                                                    <td><code>58f50bd0a178161e3c57ba6a</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 id="requestheaders-4">Request Headers</h5>
+                                        <blockquote>
+                                            <p>Content-Type=application/x-www-form-urlencoded;</p>
+                                        </blockquote>
+                                        <h5 id="responses-8">Responses</h5>
+                                        <p><strong>200</strong></p>
+                                        <h4 id="anameroot____addaendpointhttpsapidocsioimgmethodpngrootaddpostroots"> POST /roots/</h4>
+                                        <blockquote>
+                                            <p>Add new root</p>
+                                        </blockquote>
+                                        <h5 id="requestheaders-5">Request Headers</h5>
+                                        <blockquote>
+                                            <p>Content-Type=application/x-www-form-urlencoded;</p>
+                                        </blockquote>
+                                        <h5 id="requestbody-3">Request Body</h5>
+                                        <p>Url Encoded (application/x-www-form-urlencoded) </p>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>token</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>user's token</td>
+                                                    <td><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>name</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Root's name</td>
+                                                    <td><code>RasperyPi 3</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>locationId</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Location id</td>
+                                                    <td><code>58f4ff5d632b7617c02a2654e</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 id="responses-9">Responses</h5>
+                                        <p><strong>200</strong></p>
+                                        <p><a href="#api_reference">Back to API Reference</a></p>
+                                        <h3 id="anameuseraendpointgrouphttpsapidocsioimgclasspnguseruser"> User</h3>
+                                        <h4 id="anameloginaendpointhttpsapidocsioimgmethodpngloginpostuserslogin"> POST /users/login</h4>
+                                        <blockquote>
+                                            <p><em>Tags:</em> <code>Skips Authentication</code> </p>
+                                            <p>User login</p>
+                                        </blockquote>
+                                        <h5 id="requestheaders-6">Request Headers</h5>
+                                        <blockquote>
+                                            <p>Content-Type=application/x-www-form-urlencoded;</p>
+                                        </blockquote>
+                                        <h5 id="requestbody-4">Request Body</h5>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>username</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>TODO: Add a parameter description</td>
+                                                    <td><code>a</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>password</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>TODO: Add a parameter description</td>
+                                                    <td><code>1</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <p>Url Encoded (application/x-www-form-urlencoded) </p>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>username</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>TODO: Add a parameter description</td>
+                                                    <td><code>a</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>password</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>TODO: Add a parameter description</td>
+                                                    <td><code>1</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <h5 id="responses-10">Responses</h5>
+                                        <h4 id="anameregisteraendpointhttpsapidocsioimgmethodpngregisterpostusersregister">
+                                        POST /users/register</h4>
+                                        <p><strong>200</strong></p>
+
+                                        <blockquote>
+                                            <p><em>Tags:</em> <code>Skips Authentication</code> </p>
+                                            <p>User registration</p>
+                                        </blockquote>
+                                        <h5 id="queryparameters-7">Query Parameters</h5>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>name</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Optional</code></td>
+                                                    <td>Display name</td>
+                                                    <td><code>"name"</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>address</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Optional</code></td>
+                                                    <td>User address</td>
+                                                    <td><code>"address"</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>phone</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Optional</code></td>
+                                                    <td>User's phone number</td>
+                                                    <td><code>"phone"</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 id="requestheaders-7">Request Headers</h5>
+                                        <blockquote>
+                                            <p>Content-Type=application/x-www-form-urlencoded;</p>
+                                        </blockquote>
+                                        <h5 id="requestbody-5">Request Body</h5>
+                                        <p>Url Encoded (application/x-www-form-urlencoded) </p>
+
+                                        <h5 id="responses-11">Responses</h5>
+                                        <p><strong>200</strong></p>
+                                        <p><a href="#api_reference">Back to API Reference</a></p>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Type</th>
+                                                    <th>Tags</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>username</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>username (Unique)</td>
+                                                    <td><code>c2</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>password</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>Password (Length 8-30)</td>
+                                                    <td><code>2345678w</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>email</td>
+                                                    <td><code>string</code></td>
+                                                    <td><code>Required</code></td>
+                                                    <td>A valid email (Unique)</td>
+                                                    <td><code>c@con3lon.com</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+                    <!--PANEL BODY ENDS-->
+                </div>
+            </div>
+
+            <!--<div class="footer footer-position-reset">
+
+    </div>-->
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>
