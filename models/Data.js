@@ -16,7 +16,7 @@ var DataSchema   = new Schema({
 	}
 }, {strict: false});
 
-module.exports = mongoose.model('data', DataSchema);
+module.exports = mongoose.model('datax', DataSchema);
 
     // public String email;
     // public String password;

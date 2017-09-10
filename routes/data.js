@@ -12,19 +12,19 @@ router.get('/saferange', function(req, res, next) {
 })
 
 router.post('/', function (req, res, next) {
-	var page = req.body.page || req.query.page || 1;
+	var page = req.body.page || req.query.page || 0;
 	var start = req.body.start || req.query.start || new Date(2016, 01, 01).toISOString();
 	var end = req.body.end || req.query.end || new Date().toISOString();
-
+	
 	var condition = {
 		created: {
-			'$gte': start,
-			'$lte': end
+			'$gte': new Date(start),
+			'$lte': new Date(end)
 		},
 		// nodeId : nodeId,
 		// type : req.body.type
 	}
-
+	// console.log(req.body)
 	try {
 		if (req.body.range || req.query.range) {
 			var range = req.body.range || req.query.range;
@@ -37,28 +37,31 @@ router.post('/', function (req, res, next) {
 	} catch (w) {
 		if (condition['$or']) delete condition['$or'];
 	}
-
-	if (req.body.sensorId || req.query.sensorId) condition.sensorId = req.body.sensorId || req.query.sensorId;
+	req.body.nodeId = "1251166"	
+	
 	if (req.body.nodeId || req.query.nodeId) condition.nodeId = req.body.nodeId || req.query.nodeId;
 	if (req.body.type || req.query.type) condition.type = +req.body.type || +req.query.type;
-	// console.log(condition)
+	console.log(condition)
 	// return res.json(condition);
 	Data.find(condition).count(function (e, c) {
 		if (e) return res.json({ success: false, msg: e.message || e });
 		Data.find(condition, function (err, results) {
 			if (err) return res.json({ success: false, msg: err.message || err });
 			return res.json({ success: true, data: results, pages: Math.ceil(c / 20) });
-		}).sort({ created: -1 }).skip((page - 1) * 20).limit(20);
+		}).sort({ created: -1 }).skip(page * 20).limit(20);
 	});
 });
 
 router.post('/hour', function (req, res, next) {
 	var date = +req.body.date || +req.query.date || Date.now();
-	var type = +req.body.type || +req.query.type || 1;
+	// console.log(new Date(date))
+	var type = +req.body.type || +req.query.type || 0;
 	var dt = new Date(date);
 	var start = dt.setHours(0, 0, 0, 0);
 	var end = dt.setHours(23, 59, 59, 999);
 	var nodeId = req.body.nodeId || req.query.nodeId;
+	// console.log((new Date(start)).toISOString())
+	nodeId = "NODE_001"
 	if (!nodeId) return res.json({ success: false, msg: "nodeId required" });
 	var condition = {
 		created: {
@@ -87,6 +90,7 @@ router.post('/hour', function (req, res, next) {
 			}
 		}
 	]).allowDiskUse(true).exec(function (err, results) {
+		// console.log(err, results)		
 		if (err) return res.json({ success: false, msg: err.message || err });
 		return res.json({ success: true, data: results });
 	});
@@ -101,17 +105,19 @@ router.post('/daily', function (req, res, next) {
 		var now = new Date();
 		start = now.setDate(now.getDate() - 7);
 	}
-	var type = +req.body.type || +req.query.type || 1;
+	var type = +req.body.type || +req.query.type || 0;
 	var nodeId = req.body.nodeId || req.query.nodeId;
 	if (!nodeId) return res.json({ success: false, msg: "nodeId required" });
-	var sensorId = req.body.sensorId || req.query.sensorId;
+	nodeId = "1251166"	
+	// var sensorId = req.body.sensorId || req.query.sensorId;
 	var condition = {
 		created: {
 			'$gte': new Date(start),
 			'$lte': new Date(end)
 		},
 		nodeId: nodeId,
-		sensorId: sensorId
+		type: type
+		// sensorId: sensorId
 		// type: type
 	}
 	// console.log(type);

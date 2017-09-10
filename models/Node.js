@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 // var Root = require('./Root');
 var NodeSchema = new Schema({
+	_id: String,
 	name: String,
 	description: String,
 	rootId: String,
