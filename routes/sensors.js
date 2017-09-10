@@ -40,7 +40,6 @@ router.get('/info', (req, res, next) => {
 router.post('/', (req, res, next) => {
   // var {name, description, type} = req.body;
   if (!!!req.body.name) return res.json({ success: false, msg: "Sensor's name is required" });
-  if (!!!req.body.type) return res.json({ success: false, msg: "Sensor's type is required" });
 
   var sensor = new Sensor(req.body);
   if (req.body.nodeId) {

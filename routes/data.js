@@ -37,7 +37,6 @@ router.post('/', function (req, res, next) {
 	} catch (w) {
 		if (condition['$or']) delete condition['$or'];
 	}
-	req.body.nodeId = "1251166"	
 	
 	if (req.body.nodeId || req.query.nodeId) condition.nodeId = req.body.nodeId || req.query.nodeId;
 	if (req.body.type || req.query.type) condition.type = +req.body.type || +req.query.type;
@@ -60,8 +59,7 @@ router.post('/hour', function (req, res, next) {
 	var start = dt.setHours(0, 0, 0, 0);
 	var end = dt.setHours(23, 59, 59, 999);
 	var nodeId = req.body.nodeId || req.query.nodeId;
-	// console.log((new Date(start)).toISOString())
-	nodeId = "NODE_001"
+
 	if (!nodeId) return res.json({ success: false, msg: "nodeId required" });
 	var condition = {
 		created: {
@@ -108,7 +106,7 @@ router.post('/daily', function (req, res, next) {
 	var type = +req.body.type || +req.query.type || 0;
 	var nodeId = req.body.nodeId || req.query.nodeId;
 	if (!nodeId) return res.json({ success: false, msg: "nodeId required" });
-	nodeId = "1251166"	
+
 	// var sensorId = req.body.sensorId || req.query.sensorId;
 	var condition = {
 		created: {

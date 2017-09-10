@@ -88,6 +88,7 @@ router.get('/info', (req, res, next) => {
     });
   } else {
     Nodes.find({}, (err, result) => {
+		console.log(result)
       if (err || !result) return res.json({ success: false, msg: "Node not found" });
       return res.json({ success: true, data: result });
     });
