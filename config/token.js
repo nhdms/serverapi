@@ -1,7 +1,8 @@
 module.exports = {
 	dev : {
 		secret : "ABC",
-		dbURL : 'mongodb://127.0.0.1/demo'
+		dbURL : 'mongodb://sya2:seeyourairptit@127.0.0.1/demo?authSource=admin',
+		mqttURL : 'mongodb://sya2:seeyourairptit@127.0.0.1/mqtt?authSource=admin',
 	},
 	prod : {
 		secret : "ABC",
