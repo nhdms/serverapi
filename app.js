@@ -25,7 +25,7 @@ var config = require('./config/token');
 var DataModel = require('./models/Data')
 var NodeModel = require('./models/Node')
 var f = require('util').format
-app.set('env', 'dev2'); // set enviroment
+app.set('env', 'dev'); // set enviroment
 
 
 config = config[app.get('env')];
@@ -102,12 +102,12 @@ console.log('Magic happens on port' + port);
 
 //=== MQTT SERVER===
 var mosca = require('mosca');
-var moscaURL = f(config.moscaURL, encodeURIComponent(config.moscaOptions.user), encodeURIComponent(config.moscaOptions.password))
-console.log(moscaURL)
+// var moscaURL = f(config.moscaURL, encodeURIComponent(config.moscaOptions.user), encodeURIComponent(config.moscaOptions.password))
+// console.log(config.moscaURL)
 var ascoltatore = {
   //using ascoltatore
   type: 'mongo',
-  url: moscaURL,
+  url: config.moscaURL,
   pubsubCollection: 'ascoltatori',
   mongo: {}
 };
@@ -128,44 +128,7 @@ server.on('clientConnected', function (client) {
 server.on('published', function (packet, client) {
   var str = packet.payload.toString()
   console.log(str)
-  var arr = str.split(' ')
-  if (+arr[1] > 0) {
-    var hum = {
-      value: +arr[1],
-      nodeId: +arr[5] || 1251166,
-      type: 2
-    }
-    var a = new DataModel(hum)
-    a.save((err) => {
-      // console.log('e ', err)
-    })
-  }
-
-  if (+arr[2] > 0) {
-    var hum = {
-      value: +arr[2],
-      nodeId: +arr[5] || 1251166,
-      type: 0
-    }
-    var a = new DataModel(hum)
-    a.save((err) => {
-      // console.log('e ', err)
-    })
-  }
-
-  if (+arr[3] >= 0) {
-    var hum = {
-      value: +arr[3],
-      nodeId: +arr[5] || 1251166,
-      type: 1
-    }
-    var a = new DataModel(hum)
-    a.save((err) => {
-      // console.log('e ', err)
-    })
-  }
-
-  console.log('Published', packet.payload.toString());
+  // console.log('Published', packet.payload.toString());
 });
 
 server.on('ready', setup);
