@@ -84,10 +84,10 @@ async function getDataNow(id = 'NODE_001') {
   var aqi = await Data.find({type: 1, nodeId: id}).sort({created: -1}).limit(1).lean()
   // console.log(temp)
   return {
-    temp: temp[0].value,
-    hum: hum[0].value,
-    pm2: aqi[0].value,
-    lastUpdated: temp[0].created
+    temp: temp[0] ? temp[0].value : 0,
+    hum: hum[0] ? hum[0].value : 0,
+    pm2: aqi[0] ? aqi[0].value : 0, 
+    lastUpdated: aqi[0] ? aqi[0].created : undefined
   }
 }
 
@@ -122,8 +122,7 @@ router.get('/follow', (req, res, next) => {
           success: false,
           msg: er.message || er
         });
-        return res.json({
-          success: true,
+        return res.json({success: true,
           msg: `You've follow device: ${result.name}`
         });
       });
@@ -138,46 +137,43 @@ router.get('/follow', (req, res, next) => {
 });
 
 router.get('/info', async (req, res, next) => {
-  // res.json(req.params.id);
   var id = req.query.id;
-  a = await getDataNow()
-  // console.log(id)
-  var nodes = id ? await Nodes.findById(req.query.id).lean() : await Nodes.find({}).lean();
-  if (nodes.constructor === Array) {
-    nodes = nodes.map(i => {
-      return Object.assign(i, {now: a})
-    })
-  } else if (node != null) {
-    nodes = Object.assign(nodes, {now: a})
+  if (id) {
+     a = await Nodes.findById(id).lean()
+     b = await Data.find({nodeId: id}).sort({created: -1}).limit(1).lean()
+     return res.json({success: true, data: Object.assign(a, b)})
   } else {
-    return res.json({success: true, data: []})
+    ns = await Nodes.find({}).lean()
+    t = await Data.aggregate([
+{$match: {type: 0}},
+{$group: {"_id": "$nodeId", value: {$last: "$value"}}}
+])
+   h = await Data.aggregate([
+{$match: {type: 2}},
+{$group: {"_id": "$nodeId", value: {$last: "$value"}}}
+])
+ a = await Data.aggregate([
+{$match: {type: 1}},
+{$group: {"_id": "$nodeId", value: {$last: "$value"}, lastModified: {$last: "$created"}}}
+])
+
+  te = {}
+  t.map(i => {te[i._id] = i.value})
+
+  hu = {}
+  h.map(i => {hu[i._id] = i.value})
+
+ aq = {}
+ a.map(i  => {
+ aq[i._id] = {
+  val : i.value,
+  lastUpdate: i.lastModified
+ }
+})
+res.json({
+	success: true, 
+	data: ns.map(i => Object.assign(i, {now: {temp: te[i._id], hum: hu[i._id], pm2: aq[i._id].val, lastUpdate: aq[i._id].lastUpdate}}))})
   }
-  res.json({success: true, data: nodes})
-  // if (id) {
-  //   nodes = await Nodes.findById(req.query.id)
-  //   // , (err, result) => {
-  //   //   if (err || !result || !result.name) return res.json({
-  //   //     success: false,
-  //   //     msg: "Node not found"
-  //   //   });
-  //   //   return res.json({
-  //   //     success: true,
-  //   //     data: result
-  //   //   });
-  //   // });
-  // } else {
-  //   Nodes.find({}, (err, result) => {
-  //     console.log(result)
-  //     if (err || !result) return res.json({
-  //       success: false,
-  //       msg: "Node not found"
-  //     });
-  //     return res.json({
-  //       success: true,
-  //       data: result
-  //     });
-  //   });
-  // }
 });
 
 

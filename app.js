@@ -1,3 +1,4 @@
+
 // server.js
 
 // BASE SETUP
@@ -127,8 +128,39 @@ server.on('clientConnected', function (client) {
 // fired when a message is received
 server.on('published', function (packet, client) {
   var str = packet.payload.toString()
-  console.log(str)
+  var topic = packet.topic.toString()
+//  console.log(str, topic)
   // console.log('Published', packet.payload.toString());
+ var arr = str.split(' ')
+
+if (arr.length >= 3) {
+  if (!isNaN(arr[0])) {
+    a = new DataModel({
+      type: 0,
+      value: +arr[0],
+      nodeId: topic
+    })
+    a.save(() => {})
+  }
+
+  if (!isNaN(arr[1])) {
+    a = new DataModel({
+      type: 2,
+      value: +arr[1],
+      nodeId: topic
+    })
+    a.save(() => {})
+  }
+
+  if (!isNaN(arr[2])) {
+    a = new DataModel({
+      type: 1,
+      value: +arr[2],
+      nodeId: topic
+    })
+    a.save(() => {})
+  }
+}
 });
 
 server.on('ready', setup);

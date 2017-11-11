@@ -1,8 +1,8 @@
 module.exports = {
 	dev : {
 		secret : "ABC",
-		dbURL : 'mongodb://localhost/demo',
-		moscaURL : 'mongodb://localhost/demo',
+		dbURL : 'mongodb://127.0.0.1/demo',
+		moscaURL : 'mongodb://127.0.0.1/demo',
 		moscaOptions: {},
 		dbOptions: {
 			useMongoClient: true

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-// var Root = require('./Root');
+var Data = require('./Data');
 var NodeSchema = new Schema({
 	_id: String,
 	name: String,
@@ -9,6 +9,11 @@ var NodeSchema = new Schema({
 	chipId: String,
 	lid: String
 });
+
+NodeSchema.post('find', (err, doc, next) => {
+	console.log(doc)
+        next()
+})
 
 NodeSchema.methods.findByIds = (ids, cb) => {
 	// console.log(ids.constructor)
@@ -19,6 +24,13 @@ NodeSchema.methods.findByIds = (ids, cb) => {
 			$in: ids
 		}
 	}, cb);
+}
+
+NodeSchema.methods.findDetail = async (id) => {
+  a = await Data.find({nodeId:id}).sort({created: -1}).limit(1).lean()
+var NodeModel = mongoose.model('node', NodeSchema);
+  b = await NodeModel.findById(id)
+ return Object.assign(a, b)
 }
 
 module.exports = mongoose.model('node', NodeSchema);

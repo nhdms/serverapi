@@ -61,7 +61,7 @@ module.exports.getSensorById = (sid, cb) => {
 }
 
 
-module.exports.safeRange = [[26,32], [0, 1], [40, 70]]
+module.exports.safeRange = [[26,32], [0, 50], [40, 70]]
 
 module.exports.getSafeRange = function (type) {
     return this.safeRange(type);
