@@ -121,8 +121,15 @@ var settings = {
   }
 };
 var server = new mosca.Server(settings);
+var Nodes = require('./models/Node');
 server.on('clientConnected', function (client) {
   console.log('client connected', client.id);
+  Nodes.update({_id: client.id}, {$set: {connected: 1}}, console.log)
+});
+
+server.on('clientDisconnected', function(client) {
+  console.log('Client Disconnected:', client.id);
+  Nodes.update({_id: client.id}, {$set: {connectd: 1}})
 });
 
 // fired when a message is received

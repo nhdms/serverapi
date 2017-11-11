@@ -8,7 +8,7 @@ var NodeSchema = new Schema({
 	rootId: String,
 	chipId: String,
 	lid: String
-});
+}, {strict: false});
 
 NodeSchema.post('find', (err, doc, next) => {
 	console.log(doc)
