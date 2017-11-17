@@ -7,7 +7,11 @@ var Following = require('../models/Following');
 var Utils = require('../Util/Utils');
 var ObjectId = require('mongoose').Types.ObjectId;
 var cheerio = require('cheerio')
-
+var redis = require("redis"),
+  bluebird = require('bluebird'),
+  rclient = redis.createClient();
+bluebird.promisifyAll(redis.RedisClient.prototype);
+bluebird.promisifyAll(redis.Multi.prototype);
 /* GET users listing. */
 // router.post('')
 
@@ -79,14 +83,29 @@ router.use('/follow', (req, res, next) => {
 
 // Tạm thời code như một đống rác trước, hôm sau(chưa biết khi nào) sẽ sửa
 async function getDataNow(id = 'NODE_001') {
-  var temp = await Data.find({type: 0, nodeId: id}).sort({created: -1}).limit(1).lean()
-  var hum = await Data.find({type: 2, nodeId: id}).sort({created: -1}).limit(1).lean()
-  var aqi = await Data.find({type: 1, nodeId: id}).sort({created: -1}).limit(1).lean()
+  var temp = await Data.find({
+    type: 0,
+    nodeId: id
+  }).sort({
+    created: -1
+  }).limit(1).lean()
+  var hum = await Data.find({
+    type: 2,
+    nodeId: id
+  }).sort({
+    created: -1
+  }).limit(1).lean()
+  var aqi = await Data.find({
+    type: 1,
+    nodeId: id
+  }).sort({
+    created: -1
+  }).limit(1).lean()
   // console.log(temp)
   return {
     temp: temp[0] ? temp[0].value : 0,
     hum: hum[0] ? hum[0].value : 0,
-    pm2: aqi[0] ? aqi[0].value : 0, 
+    pm2: aqi[0] ? aqi[0].value : 0,
     lastUpdated: aqi[0] ? aqi[0].created : undefined
   }
 }
@@ -122,7 +141,8 @@ router.get('/follow', (req, res, next) => {
           success: false,
           msg: er.message || er
         });
-        return res.json({success: true,
+        return res.json({
+          success: true,
           msg: `You've follow device: ${result.name}`
         });
       });
@@ -136,43 +156,48 @@ router.get('/follow', (req, res, next) => {
   }
 });
 
-router.get('/info', async (req, res, next) => {
+router.get('/info', async(req, res, next) => {
   var id = req.query.id;
   if (id) {
-     a = await Nodes.findById(id).lean()
-     b = await Data.find({nodeId: id}).sort({created: -1}).limit(1).lean()
-     return res.json({success: true, data: Object.assign(a, b)})
+    a = await Nodes.findById(id).lean()
+    b = await Data.find({
+      nodeId: id
+    }).sort({
+      created: -1
+    }).limit(1).lean()
+    return res.json({
+      success: true,
+      data: Object.assign(a, b)
+    })
   } else {
     ns = await Nodes.find({}).lean()
-    t = await Data.aggregate([
-{$match: {type: 0}},
-{$group: {"_id": "$nodeId", value: {$last: "$value"}}}
-])
-   h = await Data.aggregate([
-{$match: {type: 2}},
-{$group: {"_id": "$nodeId", value: {$last: "$value"}}}
-])
- a = await Data.aggregate([
-{$match: {type: 1}},
-{$group: {"_id": "$nodeId", value: {$last: "$value"}, lastModified: {$last: "$created"}}}
-])
 
-  te = {}
-  t.map(i => {te[i._id] = i.value})
+    let p = []
+    for (let i = 0; i < ns.length; i++) {
+      p.push(rclient.getAsync(ns[i]._id))
+    }
+    let nsp = await Promise.all(p)
 
-  hu = {}
-  h.map(i => {hu[i._id] = i.value})
-
- aq = {}
- a.map(i  => {
- aq[i._id] = {
-  val : i.value,
-  lastUpdate: i.lastModified
- }
-})
-res.json({
-	success: true, 
-	data: ns.map(i => Object.assign(i, {now: {temp: te[i._id], hum: hu[i._id], pm2: aq[i._id].val, lastUpdate: aq[i._id].lastUpdate}}))})
+    res.json({
+      success: true,
+      data: ns.map((e, i) => {
+        try {
+          let arr = nsp[i].split(' ')
+          return Object.assign(e, {
+            now: {
+              temp: +arr[0],
+              hum: +arr[1],
+              pm2: +arr[2],
+              lastUpdated: +arr[3] || 0
+            }
+          })
+        } catch (ex) {
+          return Object.assign(e, {
+            now: {}
+          })
+        }
+      })
+    })
   }
 });
 
@@ -232,6 +257,54 @@ router.delete('/', (req, res, next) => {
       success: true
     });
   })
+})
+
+router.put('/', (req, res, next) => {
+  let {
+    _id,
+    name,
+    description,
+    latitude,
+    longitude
+  } = req.body
+  console.log(req.body)
+  // res.json(id)
+  if (_id) {
+    let set = {}
+    if (name) set['name'] = name
+    else if (description) set['description'] = description
+    else if (latitude) {
+      set = {
+        "location.latitude": +latitude
+      }
+    } else if (longitude) {
+      set = {
+        "location.longitude": +longitude
+      }
+    }
+    Nodes.findByIdAndUpdate({
+      _id: _id
+    }, {
+      $set: set
+    }, (err, ok) => {
+      console.log(ok)
+      if (err) {
+        return res.json({
+          success: false,
+          msg: 'Id not found'
+        })
+      } else {
+        return res.json({
+          success: true
+        })
+      }
+    })
+  } else {
+    return res.json({
+      success: false,
+      msg: 'Id not found'
+    })
+  }
 })
 
 module.exports = router;

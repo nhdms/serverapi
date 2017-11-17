@@ -1,33 +1,46 @@
-
 // server.js
 
 // BASE SETUP
 // =============================================================================
 
 // call the packages we need
-var express = require('express'); // call express
-var app = express(); // define our app using express
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var cookieParser = require('cookie-parser');
-// var router = require('./routes/api');
-var path = require('path');
+const express = require('express'), // call express
+  app = express(), // define our app using express
+  bodyParser = require('body-parser'),
+  mongoose = require('mongoose'),
+  cookieParser = require('cookie-parser'),
+  //  router = require('./routes/api'),
+  path = require('path'),
+  redis = require("redis"),
+  rclient = redis.createClient(),
+  index = require('./routes/index'),
+  users = require('./routes/users'),
+  nodes = require('./routes/nodes'),
+  roots = require('./routes/roots'),
+  sensors = require('./routes/sensors'),
+  data = require('./routes/data'),
+  locations = require('./routes/locations'),
+  jwt = require('jsonwebtoken'),
+  DataModel = require('./models/Data'),
+  NodeModel = require('./models/Node'),
+  http = require('http'),
+  https = require('https'),
+  fs = require('fs')
+// f = require('util').format
+const SECURE_KEY = '/etc/letsencrypt/live/seeyourair.com/privkey.pem',
+  SECURE_CERT = '/etc/letsencrypt/live/seeyourair.com/fullchain.pem'
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var nodes = require('./routes/nodes');
-var roots = require('./routes/roots');
-var sensors = require('./routes/sensors');
-var data = require('./routes/data');
-var locations = require('./routes/locations');
-var jwt = require('jsonwebtoken');
-var config = require('./config/token');
+const privateKey = fs.readFileSync(SECURE_KEY, 'utf8'),
+  certificate = fs.readFileSync(SECURE_CERT, 'utf8')
 
-var DataModel = require('./models/Data')
-var NodeModel = require('./models/Node')
-var f = require('util').format
+var credentials = {
+  key: privateKey,
+  cert: certificate
+}
+
 app.set('env', 'dev'); // set enviroment
 
+var config = require('./config/token')
 
 config = config[app.get('env')];
 app.set('superSecret', config.secret);
@@ -98,8 +111,13 @@ app.get('*', (req, res) => {
 })
 var port = process.env.PORT || 8080; // set our port
 // =============================================================================
-app.listen(port);
-console.log('Magic happens on port' + port);
+// app.listen(port);
+const httpServer = http.createServer(app),
+  httpsServer = https.createServer(credentials, app)
+
+httpServer.listen(8080)
+httpsServer.listen(8443)
+console.log('Magic happens on port' + port)
 
 //=== MQTT SERVER===
 var mosca = require('mosca');
@@ -118,56 +136,86 @@ var settings = {
   http: {
     port: 5000,
     bundle: true
+  },
+  secure: {
+    port: 5443,
+    keyPath: SECURE_KEY,
+    certPath: SECURE_CERT,
+  },
+  allowNonSecure: true,
+  https: {
+    port: 6443,
+    bundle: true
   }
 };
 var server = new mosca.Server(settings);
 var Nodes = require('./models/Node');
 server.on('clientConnected', function (client) {
+  // client.id = ''
   console.log('client connected', client.id);
-  Nodes.update({_id: client.id}, {$set: {connected: 1}}, console.log)
+  // server.publish('xDISCONNECT', client.id + '_1')  
+  Nodes.update({
+    _id: client.id
+  }, {
+    $set: {
+      connected: 1
+    }
+  }, console.log)
 });
 
-server.on('clientDisconnected', function(client) {
+server.on('clientDisconnected', function (client) {
   console.log('Client Disconnected:', client.id);
-  Nodes.update({_id: client.id}, {$set: {connectd: 1}})
+  // server.publish('DISCONNECT', client.id + '_0')
+  Nodes.update({
+    _id: client.id
+  }, {
+    $set: {
+      connectd: 0
+    }
+  })
 });
 
 // fired when a message is received
 server.on('published', function (packet, client) {
   var str = packet.payload.toString()
   var topic = packet.topic.toString()
-//  console.log(str, topic)
-  // console.log('Published', packet.payload.toString());
- var arr = str.split(' ')
+  //  console.log(str, topic)
+  if (topic.startsWith('NODE_')) {
+    rclient.set(topic, str + ' ' + Date.now());
+    // console.log('Published', packet.payload.toString());
+    var arr = str.split(' ')
 
-if (arr.length >= 3) {
-  if (!isNaN(arr[0])) {
-    a = new DataModel({
-      type: 0,
-      value: +arr[0],
-      nodeId: topic
-    })
-    a.save(() => {})
-  }
+    if (arr.length >= 3) {
+      if (!isNaN(arr[0])) {
+        a = new DataModel({
+          type: 0,
+          value: +arr[0],
+          nodeId: topic
+        })
+        a.save(() => {})
+      }
 
-  if (!isNaN(arr[1])) {
-    a = new DataModel({
-      type: 2,
-      value: +arr[1],
-      nodeId: topic
-    })
-    a.save(() => {})
-  }
+      if (!isNaN(arr[1])) {
+        a = new DataModel({
+          type: 2,
+          value: +arr[1],
+          nodeId: topic
+        })
+        a.save(() => {})
+      }
 
-  if (!isNaN(arr[2])) {
-    a = new DataModel({
-      type: 1,
-      value: +arr[2],
-      nodeId: topic
-    })
-    a.save(() => {})
+      if (!isNaN(arr[2])) {
+        a = new DataModel({
+          type: 1,
+          value: +arr[2],
+          nodeId: topic
+        })
+        a.save(() => {})
+      }
+    }
+  } else {
+    console.log(topic, 'x')
   }
-}
 });
 
 server.on('ready', setup);
