@@ -45,10 +45,14 @@ var config = require('./config/token')
 config = config[app.get('env')];
 app.set('superSecret', config.secret);
 // console.log(app.get('superSecret'));
-mongoose.connect(config.dbURL, config.dbOptions, (e) => {
-  if (e) return console.log(e);
-  console.log("Mongo connected");
-});
+// mongoose.connect(config.dbURL, config.dbOptions, (e) => {
+//   if (e) return console.log(e);
+//   console.log("Mongo connected");
+// });
+
+mongoose.connect(config.dbURL, config.dbOptions)
+mongoose.Promise = global.Promise
+
 const allowPaths = ['/', '/users']
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -58,32 +62,39 @@ app.use((req, res, next) => {
   if ('OPTIONS' !== req.method && req.url !== "/" && allowPaths.filter((i) => {
       return req.url.startsWith(i)
     }).length == 0) {
-    var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
-    if (token) {
-      // verifies secret and checks exp
-      jwt.verify(token, app.get('superSecret'), function (err, decoded) {
-        if (err) {
-          return res.json({
-            success: false,
-            message: 'Failed to authenticate token.'
-          });
-        } else {
-          // if everything is good, save to request for use in other routes
-          req.decoded = decoded;
-          // console.log(decoded);
-          next();
-        }
-      });
+    try {
+      var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+      if (token) {
+        // verifies secret and checks exp
+        jwt.verify(token, app.get('superSecret'), function (err, decoded) {
+          if (err) {
+            return res.json({
+              success: false,
+              message: 'Failed to authenticate token.'
+            });
+          } else {
+            // if everything is good, save to request for use in other routes
+            req.decoded = decoded;
+            // console.log(decoded);
+            next();
+          }
+        });
 
-    } else {
+      } else {
 
-      // if there is no token
-      // return an error
+        // if there is no token
+        // return an error
+        return res.status(403).json({
+          success: false,
+          message: 'No token provided.'
+        });
+
+      }
+    } catch (ez) {
       return res.status(403).json({
         success: false,
         message: 'No token provided.'
       });
-
     }
   } else {
     next();
@@ -184,7 +195,7 @@ server.on('published', function (packet, client) {
     rclient.set(topic, str + ' ' + Date.now());
     // console.log('Published', packet.payload.toString());
     var arr = str.split(' ')
-
+    // if (arr)
     if (arr.length >= 3) {
       if (!isNaN(arr[0])) {
         a = new DataModel({

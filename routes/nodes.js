@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Nodes = require('../models/Node');
 var Data = require('../models/Data');
+var History = require('../models/History');
 var Following = require('../models/Following');
 // var Location = require('../models/Location');
 var Utils = require('../Util/Utils');
@@ -205,45 +206,31 @@ router.get('/info', async(req, res, next) => {
 router.post('/', (req, res, next) => {
   var {
     name,
-    description,
-    rootId
+    description
+    // rootId
   } = req.body;
   if (!!!name) return res.json({
     success: false,
     msg: "Node's name is required"
   });
-  if (rootId) {
-    Utils.validateRoot(rootId, (err, result) => {
-      // if (err) return res.json({success : false, msg : err.message || err});
-      if (err || !result.name) return res.json({
-        success: false,
-        msg: "Root not found!"
-      });
-      root = new Nodes(req.body);
-      root.save((e) => {
-        if (e) return res.json({
-          success: false,
-          msg: e.message || e
-        });
-        return res.json({
-          success: true,
-          msg: "Adding node successfully"
-        });
-      });
-    });
-  } else {
-    root = new Nodes(req.body);
-    root.save((e) => {
-      if (e) return res.json({
-        success: false,
-        msg: e.message || e
-      });
-      return res.json({
-        success: true,
-        msg: "Adding node successfully"
-      });
-    });
-  }
+  let node = new Nodes({
+    name: name,
+    description: description,
+    _id: req.body._id ? req.body._id : name,
+    current_location: {
+      longitude: 0,
+      latitude: 0
+    }
+  })
+  node.save((e, r) => {
+    if (e) return res.json({
+      success: false,
+      msg: e.message || e
+    })
+    return res.json({
+      success: true
+    })
+  })
 });
 
 router.delete('/', (req, res, next) => {
@@ -259,44 +246,67 @@ router.delete('/', (req, res, next) => {
   })
 })
 
-router.put('/', (req, res, next) => {
+router.put('/', async(req, res, next) => {
   let {
     _id,
     name,
     description,
-    latitude,
-    longitude
+    location
   } = req.body
-  console.log(req.body)
+  // console.log(req.body)
   // res.json(id)
+  let isValid = false
   if (_id) {
     let set = {}
+    const put = {}    
     if (name) set['name'] = name
     else if (description) set['description'] = description
-    else if (latitude) {
-      set = {
-        "location.latitude": +latitude
-      }
-    } else if (longitude) {
-      set = {
-        "location.longitude": +longitude
+    else if (location) {
+      try {
+        const currentNode = await Nodes.findById(_id)
+        // console.log(currentNode)
+        const arr = location.split('-')
+        if (Number(arr[0]) && Number(arr[0])) {
+          set['current_location.latitude'] = +arr[0]
+          set['current_location.longitude'] = +arr[1]
+          put['location'] = {
+            latitude: +arr[0],
+            longitude: +arr[1]
+          }
+          // put['location.latitude'] = +arr[0]
+          // put['location.longitude'] = +arr[1]
+          put['created'] = new Date()
+          // isValid = true
+        }
+      } catch (e) {
+
       }
     }
+    // console.log(set, put)
     Nodes.findByIdAndUpdate({
       _id: _id
     }, {
       $set: set
     }, (err, ok) => {
-      console.log(ok)
+      // console.log(err)
       if (err) {
         return res.json({
           success: false,
-          msg: 'Id not found'
+          msg: err.message || err
         })
       } else {
-        return res.json({
+        res.json({
           success: true
         })
+
+        Nodes.findByIdAndUpdate({
+          _id: _id
+        },
+      {
+        $push: {history_locations: put}
+      }, (er, o) => {
+        console.log('e', er)
+      })
       }
     })
   } else {

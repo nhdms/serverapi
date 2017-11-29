@@ -7,14 +7,13 @@ var DataSchema   = new Schema({
 		default : Date.now
 	},
 	nodeId: String,
-	sensorId: String,
 	value: Number,
 	type: Number,
 	created : {
 		type : Date,
 		default : Date.now
 	}
-}, {strict: false});
+});
 
 module.exports = mongoose.model('data', DataSchema);
 
