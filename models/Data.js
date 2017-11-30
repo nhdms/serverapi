@@ -2,7 +2,7 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 // var Node = require('./Node');
 var DataSchema   = new Schema({
-	received : {
+	lastUpdate : {
 		type : Date,
 		default : Date.now
 	},

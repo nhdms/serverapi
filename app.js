@@ -13,6 +13,7 @@ const express = require('express'), // call express
   path = require('path'),
   redis = require("redis"),
   rclient = redis.createClient(),
+  bluebird = require('bluebird'),
   index = require('./routes/index'),
   users = require('./routes/users'),
   nodes = require('./routes/nodes'),
@@ -27,6 +28,10 @@ const express = require('express'), // call express
   https = require('https'),
   fs = require('fs')
 // f = require('util').format
+
+bluebird.promisifyAll(redis.RedisClient.prototype);
+bluebird.promisifyAll(redis.Multi.prototype);
+
 const SECURE_KEY = '/etc/letsencrypt/live/seeyourair.com/privkey.pem',
   SECURE_CERT = '/etc/letsencrypt/live/seeyourair.com/fullchain.pem'
 
@@ -162,29 +167,96 @@ var settings = {
 var server = new mosca.Server(settings);
 var Nodes = require('./models/Node');
 server.on('clientConnected', function (client) {
-  // client.id = ''
-  console.log('client connected', client.id);
-  // server.publish('xDISCONNECT', client.id + '_1')  
-  Nodes.update({
+  var message = {
+    topic: 'client_connected',
+    payload: JSON.stringify({
+      id: client.id,
+      status: 1
+    })
+  };
+
+  server.publish(message, function () {
+    console.log('done!', client.id);
+  });
+
+  NodeModel.findByIdAndUpdate({
     _id: client.id
   }, {
     $set: {
       connected: 1
     }
-  }, console.log)
+  }, (err, ok) => {
+
+  });
+
 });
 
 server.on('clientDisconnected', function (client) {
-  console.log('Client Disconnected:', client.id);
-  // server.publish('DISCONNECT', client.id + '_0')
-  Nodes.update({
+  var message = {
+    topic: 'client_connected',
+    payload: JSON.stringify({
+      id: client.id,
+      status: 0
+    })
+  };
+
+  server.publish(message, function () {
+    console.log('done!', client.id);
+  });
+
+  NodeModel.findByIdAndUpdate({
     _id: client.id
   }, {
     $set: {
-      connectd: 0
+      connected: 0
     }
-  })
+  }, (err, ok) => {
+
+  });
 });
+
+async function processValue(topic, val, type) {
+  const top = topic + type,
+    lastValue = await rclient.getAsync(top)
+
+  console.log('OK', topic, val, lastValue)    
+  if (lastValue) {
+    const lastValArr = lastValue.split('_')
+    if (+lastValArr[0] === val) {
+      DataModel.findByIdAndUpdate({
+        _id: lastValArr[1]
+      }, {
+        $set: {
+          lastUpdate: new Date()
+        }
+      }, (exx, rr) => {
+
+      })
+    } else {
+      a = new DataModel({
+        type: type,
+        value: val,
+        nodeId: topic
+      })
+      a.save((ex, r) => {
+        if (!ex && r) {
+          rclient.set(top, val + '_' + r._id.toString())
+        }
+      })
+    }
+  } else {
+    a = new DataModel({
+      type: 0,
+      value: val,
+      nodeId: topic
+    })
+    a.save((ex, r) => {
+      if (!ex && r) {
+        rclient.set(top, val + '_' + r._id.toString())
+      }
+    })
+  }
+}
 
 // fired when a message is received
 server.on('published', function (packet, client) {
@@ -198,30 +270,15 @@ server.on('published', function (packet, client) {
     // if (arr)
     if (arr.length >= 3) {
       if (!isNaN(arr[0])) {
-        a = new DataModel({
-          type: 0,
-          value: +arr[0],
-          nodeId: topic
-        })
-        a.save(() => {})
+        processValue(topic, +arr[0], 0)
       }
 
       if (!isNaN(arr[1])) {
-        a = new DataModel({
-          type: 2,
-          value: +arr[1],
-          nodeId: topic
-        })
-        a.save(() => {})
+        processValue(topic, +arr[1], 1)        
       }
 
       if (!isNaN(arr[2])) {
-        a = new DataModel({
-          type: 1,
-          value: +arr[2],
-          nodeId: topic
-        })
-        a.save(() => {})
+        processValue(topic, +arr[2], 2)        
       }
     }
   } else {
