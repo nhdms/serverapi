@@ -137,8 +137,10 @@ var port = process.env.PORT || 8080; // set our port
 const httpServer = http.createServer(app),
   httpsServer = https.createServer(credentials, app)
 
-httpServer.listen(8080)
-httpsServer.listen(8443)
+httpServer.listen(port)
+var httpsPort = 8443;
+if (port == 8081) httpsPort = 8444
+httpsServer.listen(httpsPort)
 console.log('Magic happens on port' + port)
 
 //=== MQTT SERVER===
