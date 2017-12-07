@@ -2,19 +2,18 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 // var Node = require('./Node');
 var DataSchema   = new Schema({
-	received : {
+	lastUpdate : {
 		type : Date,
 		default : Date.now
 	},
 	nodeId: String,
-	sensorId: String,
 	value: Number,
 	type: Number,
 	created : {
 		type : Date,
 		default : Date.now
 	}
-}, {strict: false});
+});
 
 module.exports = mongoose.model('data', DataSchema);
 
