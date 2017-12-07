@@ -181,7 +181,7 @@ router.post('/', function (req, res, next) {
       '$gte': new Date(start),
       '$lte': new Date(end)
     },
-    // nodeId : nodeId,
+    nodeId : req.body.nodeId || req.query.nodeId,
     // type : req.body.type
   }
   // console.log(req.body)
