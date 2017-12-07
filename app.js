@@ -66,8 +66,8 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', true);
   if ('OPTIONS' !== req.method && req.url !== "/" && allowPaths.filter((i) => {
-      return req.url.startsWith(i)
-    }).length == 0) {
+    return req.url.startsWith(i)
+  }).length == 0) {
     try {
       var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
       if (token) {
@@ -119,6 +119,11 @@ app.use('/nodes', nodes);
 app.use('/sensors', sensors);
 app.use('/data', data);
 app.use('/locations', locations);
+app.get('/check-server', function (req, res) {
+  res.json({
+    serverPort: app.address().port
+  })
+})
 app.get('*', (req, res) => {
   // res.json({message : "wassup"});
   return res.status(404).json({
