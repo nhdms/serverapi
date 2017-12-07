@@ -33,16 +33,16 @@ const express = require('express'), // call express
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
-const SECURE_KEY = './cert/live/seeyourair.com/privkey.pem',
-  SECURE_CERT = './cert/live/seeyourair.com/fullchain.pem'
+// const SECURE_KEY = './cert/live/seeyourair.com/privkey.pem',
+//   SECURE_CERT = './cert/live/seeyourair.com/fullchain.pem'
 
-const privateKey = fs.readFileSync(SECURE_KEY, 'utf8'),
-  certificate = fs.readFileSync(SECURE_CERT, 'utf8')
+// const privateKey = fs.readFileSync(SECURE_KEY, 'utf8'),
+//   certificate = fs.readFileSync(SECURE_CERT, 'utf8')
 
-var credentials = {
-  key: privateKey,
-  cert: certificate
-}
+// var credentials = {
+//   key: privateKey,
+//   cert: certificate
+// }
 
 app.set('env', 'dev'); // set enviroment
 
@@ -134,11 +134,11 @@ app.get('*', (req, res) => {
 var port = process.env.PORT || 8080; // set our port
 // =============================================================================
 // app.listen(port);
-const httpServer = http.createServer(app),
-  httpsServer = https.createServer(credentials, app)
+const httpServer = http.createServer(app);
+//httpsServer = https.createServer(credentials, app)
 
 httpServer.listen(8080)
-httpsServer.listen(8443)
+//httpsServer.listen(8443)
 console.log('Magic happens on port' + port)
 
 //=== MQTT SERVER===
