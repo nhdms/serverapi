@@ -121,7 +121,7 @@ app.use('/data', data);
 app.use('/locations', locations);
 app.get('/check-server', function (req, res) {
   res.json({
-    serverPort: app.address().port
+    serverPort: process.env.SERVER_NAME
   })
 })
 app.get('*', (req, res) => {
