@@ -33,8 +33,8 @@ const express = require('express'), // call express
 bluebird.promisifyAll(redis.RedisClient.prototype);
 bluebird.promisifyAll(redis.Multi.prototype);
 
-const SECURE_KEY = '/etc/letsencrypt/live/seeyourair.com/privkey.pem',
-  SECURE_CERT = '/etc/letsencrypt/live/seeyourair.com/fullchain.pem'
+const SECURE_KEY = './cert/live/seeyourair.com/privkey.pem',
+  SECURE_CERT = './cert/live/seeyourair.com/fullchain.pem'
 
 const privateKey = fs.readFileSync(SECURE_KEY, 'utf8'),
   certificate = fs.readFileSync(SECURE_CERT, 'utf8')
