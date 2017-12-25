@@ -5,14 +5,25 @@ var NodeSchema = new Schema({
 	_id: String,
 	name: String,
 	description: String,
-	rootId: String,
-	chipId: String,
-	lid: String
-}, {strict: false});
+	password: String,
+	current_location: {
+		longitude: Number,
+		latitude: Number
+	},
+	history_locations: [{
+		location: {
+			longitude: Number,
+			latitude: Number
+		},
+		created: Date
+	}],
+	connected: boolean,
+	isPrivate: boolean
+}, { strict: false });
 
 NodeSchema.post('find', (err, doc, next) => {
 	console.log(doc)
-        next()
+	next()
 })
 
 NodeSchema.methods.findByIds = (ids, cb) => {
@@ -27,17 +38,10 @@ NodeSchema.methods.findByIds = (ids, cb) => {
 }
 
 NodeSchema.methods.findDetail = async (id) => {
-  a = await Data.find({nodeId:id}).sort({created: -1}).limit(1).lean()
-var NodeModel = mongoose.model('node', NodeSchema);
-  b = await NodeModel.findById(id)
- return Object.assign(a, b)
+	a = await Data.find({ nodeId: id }).sort({ created: -1 }).limit(1).lean()
+	var NodeModel = mongoose.model('node', NodeSchema);
+	b = await NodeModel.findById(id)
+	return Object.assign(a, b)
 }
 
 module.exports = mongoose.model('node', NodeSchema);
-
-    // public String email;
-    // public String password;
-    // public String name;
-    // public String address;
-    // public String phone;
-    // public boolean isManager;

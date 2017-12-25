@@ -1,26 +1,32 @@
+import { ObjectId } from '../../../../../../Library/Caches/typescript/2.6/node_modules/@types/bson';
+
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    username : {
-        type : String,
-        unique : true,
-        required : true
+    username: {
+        type: String,
+        unique: true,
+        required: true
     },
-    password : {
-        type : String,
-        unique : true,
-        required : true
+    password: {
+        type: String,
+        unique: true,
+        required: true
     },
-    name :String,
-    address : String,
-    phone : String,
-    email : String,
-    roles : [String]
+    name: String,
+    phone: String,
+    email: String,
+    roles: [String],
+    fcm_token: String,
+    owner_nodeIds: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Node'
+    }]
 });
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
     var user = this;
     bcrypt.genSalt(10, (err, salt) => {
         // console.log(err, salt);
@@ -37,7 +43,7 @@ UserSchema.pre('save', function(next) {
     });
 });
 
-UserSchema.methods.comparePassword = function(password, cb) {
+UserSchema.methods.comparePassword = function (password, cb) {
     bcrypt.compare(password, this.password, (err, isMatch) => {
         if (err) return cb(err);
         cb(null, isMatch);

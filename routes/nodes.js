@@ -1,6 +1,9 @@
+import { race } from '../../../../../../Library/Caches/typescript/2.6/node_modules/@types/bluebird';
+
 var express = require('express');
 var router = express.Router();
 var Nodes = require('../models/Node');
+var Users = require('../models/User')
 var Data = require('../models/Data');
 var History = require('../models/History');
 var Following = require('../models/Following');
@@ -44,6 +47,96 @@ router.get('/unfollow', (req, res, next) => {
   });
 });
 
+router.post('/nodes/new_node', (req, res, next) => {
+  var node = new Nodes({
+    _id: req.body.nodeid,
+    password: req.body.password,
+    isPrivate: req.body.isPrivate
+  })
+  node.save((err) => {
+    if (err) {
+      req.json({
+        success: false,
+        message: err.toString()
+      })
+    } else {
+      req.json({
+        success: true,
+        data: node
+      })
+    }
+  })
+});
+
+//api thêm node
+router.post('/nodes/add', (req, res, next) => {
+  Nodes.findOneAndUpdate({
+    _id: req.body.nodeid,
+    password: req.body.password,
+    isPrivate: false
+  }, {
+      $set: {
+        name: req.body.name,
+        description: req.body.description,
+        current_location: {
+          longitude: req.body.longitude,
+          latitude: req.body.latitude
+        }
+      }
+    }, (err, node) => {
+      if (err) {
+        req.json({
+          success: false,
+          message: err.toString()
+        })
+      } else if (!node) {
+        req.json({
+          success: false,
+          message: "Không tồn tại thiết bị"
+        })
+      } else {
+        Users.findOneAndUpdate(
+          req.decoded._doc._id, {
+            $addToSet: {
+              owner_nodeIds: req.body.nodeid
+            }
+          }, () => {
+            req.json({
+              success: true,
+              data: node
+            })
+          })
+      }
+    })
+})
+
+router.get('/nodes/owner', (req, res) => {
+  Users.findById(req.decoded._doc._id, (err, user) => {
+    if (!user) {
+      req.json({
+        success: false
+      })
+    } else {
+      Nodes.find({
+        _id: {
+          $in: user.owner_nodeIds
+        }
+      }, (err, nodes) => {
+        if (!nodes) {
+          req.json({
+            success: false
+          })
+        } else {
+          res.json({
+            success: true,
+            data: nodes
+          })
+        }
+      })
+    }
+  })
+})
+
 router.get('/nodes', (req, res, next) => {
   Utils.getNodeByLocationId(req.query.lid, function (e, resp) {
     // console.log(resp)
@@ -57,7 +150,6 @@ router.get('/nodes', (req, res, next) => {
     })
   })
 });
-
 
 router.use('/follow', (req, res, next) => {
   var uid = req.decoded._doc._id;
@@ -81,8 +173,6 @@ router.use('/follow', (req, res, next) => {
   })
 });
 
-
-// Tạm thời code như một đống rác trước, hôm sau(chưa biết khi nào) sẽ sửa
 async function getDataNow(id = 'NODE_001') {
   var temp = await Data.find({
     type: 0,
@@ -157,7 +247,7 @@ router.get('/follow', (req, res, next) => {
   }
 });
 
-router.get('/info', async(req, res, next) => {
+router.get('/info', async (req, res, next) => {
   var id = req.query.id;
   if (id) {
     a = await Nodes.findById(id).lean()
@@ -246,7 +336,7 @@ router.delete('/', (req, res, next) => {
   })
 })
 
-router.put('/', async(req, res, next) => {
+router.put('/', async (req, res, next) => {
   let {
     _id,
     name,
@@ -258,7 +348,7 @@ router.put('/', async(req, res, next) => {
   let isValid = false
   if (_id) {
     let set = {}
-    const put = {}    
+    const put = {}
     if (name) set['name'] = name
     else if (description) set['description'] = description
     else if (location) {
@@ -286,29 +376,29 @@ router.put('/', async(req, res, next) => {
     Nodes.findByIdAndUpdate({
       _id: _id
     }, {
-      $set: set
-    }, (err, ok) => {
-      // console.log(err)
-      if (err) {
-        return res.json({
-          success: false,
-          msg: err.message || err
-        })
-      } else {
-        res.json({
-          success: true
-        })
+        $set: set
+      }, (err, ok) => {
+        // console.log(err)
+        if (err) {
+          return res.json({
+            success: false,
+            msg: err.message || err
+          })
+        } else {
+          res.json({
+            success: true
+          })
 
-        Nodes.findByIdAndUpdate({
-          _id: _id
-        },
-      {
-        $push: {history_locations: put}
-      }, (er, o) => {
-        console.log('e', er)
+          Nodes.findByIdAndUpdate({
+            _id: _id
+          },
+            {
+              $push: { history_locations: put }
+            }, (er, o) => {
+              console.log('e', er)
+            })
+        }
       })
-      }
-    })
   } else {
     return res.json({
       success: false,
