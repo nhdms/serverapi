@@ -37,7 +37,7 @@ router.post('/login', (req, res, next) => {
           var info = user._doc;
           delete info.password;
           delete info.__v;
-          res.json({ success: true, token: token, info : info });
+          res.json({ success: true, token: token, info: info });
         } else {
           res.json({ success: false, msg: "Authentication failed. Wrong password" })
         }
@@ -51,7 +51,7 @@ router.post('/register', (req, res, next) => {
   var { username, password, email } = req.body;
   if (!!!username) return res.json({ success: false, msg: "User is required" });
   else if (!!!password) return res.json({ success: false, msg: "Password is required" });
-  else if (!Utils.validatePassword(password)) return res.json({success:false, msg : Utils.validPasswordMessage});
+  else if (!Utils.validatePassword(password)) return res.json({ success: false, msg: Utils.validPasswordMessage });
   else if (!!!email) return res.json({ success: false, msg: "Email is required" });
   else if (!Utils.validateEmail(email)) return res.json({ success: false, msg: "Email is not valid" });
   else {

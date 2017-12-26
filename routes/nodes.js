@@ -138,17 +138,17 @@ router.get('/nodes/owner', (req, res) => {
 })
 
 router.get('/nodes', (req, res, next) => {
-  Utils.getNodeByLocationId(req.query.lid, function (e, resp) {
-    // console.log(resp)
-    if (e) return res.json({
-      success: false,
-      msg: e.message || e
-    });
-    return res.json({
-      success: true,
-      data: resp
-    })
-  })
+  // Utils.getNodeByLocationId(req.query.lid, function (e, resp) {
+  //   // console.log(resp)
+  //   if (e) return res.json({
+  //     success: false,
+  //     msg: e.message || e
+  //   });
+  //   return res.json({
+  //     success: true,
+  //     data: resp
+  //   })
+  // })
 });
 
 router.use('/follow', (req, res, next) => {

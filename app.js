@@ -18,10 +18,10 @@ const express = require('express'), // call express
   index = require('./routes/index'),
   users = require('./routes/users'),
   nodes = require('./routes/nodes'),
-  roots = require('./routes/roots'),
-  sensors = require('./routes/sensors'),
+  // roots = require('./routes/roots'),
+  // sensors = require('./routes/sensors'),
   data = require('./routes/data'),
-  locations = require('./routes/locations'),
+  // locations = require('./routes/locations'),
   jwt = require('jsonwebtoken'),
   DataModel = require('./models/Data'),
   NodeModel = require('./models/Node'),
@@ -114,11 +114,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use('/', index);
 app.use('/users', users);
-app.use('/roots', roots);
+// app.use('/roots', roots);
 app.use('/nodes', nodes);
-app.use('/sensors', sensors);
+// app.use('/sensors', sensors);
 app.use('/data', data);
-app.use('/locations', locations);
+// app.use('/locations', locations);
 app.get('/check-server', function (req, res) {
   res.json({
     serverName: process.env.SERVER_NAME

@@ -11,57 +11,57 @@ module.exports.validatePassword = (pass) => {
     return !!pass && pass.length >= 8 && pass.length <= 30;
 }
 
-module.exports.validateLocation = (lid, cb) => {
-    Location.findById(lid, (err, result) => {
-        if (err) return cb(err);
-        else cb(null, result);
-    });
-}
+// module.exports.validateLocation = (lid, cb) => {
+//     Location.findById(lid, (err, result) => {
+//         if (err) return cb(err);
+//         else cb(null, result);
+//     });
+// }
 
-module.exports.validateRoot = (rid, cb) => {
-    Root.findById(rid, (err, result) => {
-        if (err) return cb(err);
-        else cb(null, result);
-    });
-}
+// module.exports.validateRoot = (rid, cb) => {
+//     Root.findById(rid, (err, result) => {
+//         if (err) return cb(err);
+//         else cb(null, result);
+//     });
+// }
 
-module.exports.validateNode = (nid, cb) => {
-    Node.findById(nid, (err, result) => {
-        if (err) return cb(err);
-        else cb(null, result);
-    });
-}
+// module.exports.validateNode = (nid, cb) => {
+//     Node.findById(nid, (err, result) => {
+//         if (err) return cb(err);
+//         else cb(null, result);
+//     });
+// }
 
-module.exports.validateSensor = (sid, cb) => {
-    Sensor.findById(sid, (err, result) => {
-        if (err) return cb(err);
-        else cb(null, result);
-    });
-}
+// module.exports.validateSensor = (sid, cb) => {
+//     Sensor.findById(sid, (err, result) => {
+//         if (err) return cb(err);
+//         else cb(null, result);
+//     });
+// }
 
-module.exports.getLocationById = (lid, cb) => {
-    Location.findById(lid, cb);
-}
-
-
-module.exports.getRootById = (rid, cb) => {
-    Root.findById(rid, cb);
-}
-
-module.exports.getNodeById = (rid, cb) => {
-    Node.findById(rid, cb);
-}
-
-module.exports.getNodeByLocationId = (lid, cb) => {
-    Node.find({lid : lid}, cb);
-}
-
-module.exports.getSensorById = (sid, cb) => {
-    Sensor.findById(sid, cb);
-}
+// module.exports.getLocationById = (lid, cb) => {
+//     Location.findById(lid, cb);
+// }
 
 
-module.exports.safeRange = [[26,32], [0, 50], [40, 70]]
+// module.exports.getRootById = (rid, cb) => {
+//     Root.findById(rid, cb);
+// }
+
+// module.exports.getNodeById = (rid, cb) => {
+//     Node.findById(rid, cb);
+// }
+
+// module.exports.getNodeByLocationId = (lid, cb) => {
+//     Node.find({ lid: lid }, cb);
+// }
+
+// module.exports.getSensorById = (sid, cb) => {
+//     Sensor.findById(sid, cb);
+// }
+
+
+module.exports.safeRange = [[26, 32], [0, 50], [40, 70]]
 
 module.exports.getSafeRange = function (type) {
     return this.safeRange(type);
