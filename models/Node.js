@@ -17,8 +17,8 @@ var NodeSchema = new Schema({
 		},
 		created: Date
 	}],
-	connected: boolean,
-	isPrivate: boolean
+	connected: Boolean,
+	isPrivate: Boolean
 }, { strict: false });
 
 NodeSchema.post('find', (err, doc, next) => {
