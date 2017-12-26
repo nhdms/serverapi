@@ -1,7 +1,7 @@
-var Location = require('../models/Location');
-var Root = require('../models/Root');
+// var Location = require('../models/Location');
+// var Root = require('../models/Root');
 var Node = require('../models/Node');
-var Sensor = require('../models/Sensor');
+// var Sensor = require('../models/Sensor');
 module.exports.validateEmail = (email) => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
