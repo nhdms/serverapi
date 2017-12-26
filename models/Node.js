@@ -13,7 +13,8 @@ var NodeSchema = new Schema({
 	history_locations: [{
 		location: {
 			longitude: Number,
-			latitude: Number
+			latitude: Number,
+			created: Date
 		},
 		created: Date
 	}],
