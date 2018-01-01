@@ -103,6 +103,7 @@ app.use((req, res, next) => {
       });
     }
   } else {
+    print('vao dey')
     next();
   }
 });
