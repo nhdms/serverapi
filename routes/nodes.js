@@ -298,6 +298,7 @@ router.get('/info', async (req, res, next) => {
 
 router.get('/infos', isVerifyToken, async (req, res, next) => {
   var uid = req.decoded._id;
+  console.log(uid)
   Following.find({
     uid: uid
   }, async (e, follows) => {
