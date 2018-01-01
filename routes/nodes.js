@@ -300,7 +300,7 @@ router.get('/infos', isVerifyToken, async (req, res, next) => {
   var uid = req.decoded._id;
   Following.find({
     uid: uid
-  }, (e, follows) => {
+  }, async (e, follows) => {
     if (e) return res.json({
       success: false,
       msg: e.message || e
