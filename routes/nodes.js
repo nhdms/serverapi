@@ -74,7 +74,7 @@ router.post('/add', isVerifyToken, (req, res, next) => {
   Nodes.findOneAndUpdate({
     _id: req.body.nodeid,
     password: req.body.password,
-    isPrivate: false
+    isPrivate: true
   }, {
       $set: {
         name: req.body.name,
