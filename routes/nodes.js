@@ -70,7 +70,7 @@ router.post('/new_node', (req, res, next) => {
 });
 
 //api thêm node
-router.post('/add', (req, res, next) => {
+router.post('/add', isVerifyToken, (req, res, next) => {
   Nodes.findOneAndUpdate({
     _id: req.body.nodeid,
     password: req.body.password,
@@ -111,7 +111,7 @@ router.post('/add', (req, res, next) => {
     })
 })
 
-router.get('/owner', (req, res) => {
+router.get('/owner', isVerifyToken, (req, res) => {
   Users.findById(req.decoded._doc._id, (err, user) => {
     if (!user) {
       res.json({
@@ -152,7 +152,7 @@ router.get('/nodes', (req, res, next) => {
   // })
 });
 
-router.use('/follow', (req, res, next) => {
+router.use('/follow', isVerifyToken, (req, res, next) => {
   var uid = req.decoded._doc._id;
   // var check = new ObjectId(uid);
   var deviceId = req.query.deviceId;
