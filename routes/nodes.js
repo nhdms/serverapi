@@ -33,7 +33,7 @@ router.get('/unfollow', (req, res, next) => {
   var deviceId = req.query.deviceId;
   Following.remove({
     uid: uid,
-    deviceId: deviceId
+    nodeid: deviceId
   }, (e, r) => {
     if (e) return res.json({
       success: false,
@@ -74,7 +74,6 @@ router.post('/add', isVerifyToken, (req, res, next) => {
   Nodes.findOneAndUpdate({
     _id: req.body.nodeid,
     password: req.body.password,
-    isPrivate: true
   }, {
       $set: {
         name: req.body.name,
@@ -113,7 +112,7 @@ router.post('/add', isVerifyToken, (req, res, next) => {
     })
 })
 
-router.get('/owner', isVerifyToken, (req, res) => {
+router.get('/controls', isVerifyToken, (req, res) => {
   Users.findById(req.decoded._id, (err, user) => {
     if (!user) {
       res.json({
@@ -123,7 +122,8 @@ router.get('/owner', isVerifyToken, (req, res) => {
       Nodes.find({
         _id: {
           $in: user.owner_nodeIds
-        }
+        },
+        node_type: 2
       }, (err, nodes) => {
         if (!nodes) {
           res.json({
@@ -158,9 +158,10 @@ router.use('/follow', isVerifyToken, (req, res, next) => {
   var uid = req.decoded._id;
   // var check = new ObjectId(uid);
   var deviceId = req.query.deviceId;
+
   Following.find({
     uid: uid,
-    deviceId: deviceId
+    nodeid: deviceId
   }, (e, r) => {
     // console.log(e, r);
     if (e) return res.json({
@@ -205,7 +206,7 @@ async function getDataNow(id = 'NODE_001') {
 }
 
 // router.get('/')
-router.get('/follow', (req, res, next) => {
+router.get('/follow', isVerifyToken, (req, res, next) => {
   // res.json();
   try {
     // var check = new ObjectId(req.de)
@@ -216,7 +217,7 @@ router.get('/follow', (req, res, next) => {
     // console.log(a)
     Nodes.findById(deviceId, (err, result) => {
       // console.log(err, result);
-      if (err || !result.name) return res.json({
+      if (err || !result.name || result.isPrivate) return res.json({
         success: false,
         msg: "Node not found"
       });
@@ -227,7 +228,7 @@ router.get('/follow', (req, res, next) => {
       // });
       var follow = new Following({
         uid: uid,
-        deviceId: deviceId
+        nodeid: deviceId
       });
 
       follow.save((er, r) => {
@@ -264,8 +265,8 @@ router.get('/info', async (req, res, next) => {
       data: Object.assign(a, b)
     })
   } else {
-    ns = await Nodes.find({}).lean()
 
+    var ns = await Nodes.find({}).lean()
     let p = []
     for (let i = 0; i < ns.length; i++) {
       p.push(rclient.getAsync(ns[i]._id))
@@ -294,6 +295,51 @@ router.get('/info', async (req, res, next) => {
     })
   }
 });
+
+router.get('/infos', isVerifyToken, async (req, res, next) => {
+  var uid = req.decoded._id;
+  Following.find({
+    uid: uid
+  }, (e, follows) => {
+    if (e) return res.json({
+      success: false,
+      msg: e.message || e
+    });
+    var nodeIds = follows.map((f) => {
+      return f.nodeId
+    })
+    var ns = await Nodes.find({ _id: { $in: nodeIds }, node_type: 1 }).lean()
+    let p = []
+    for (let i = 0; i < ns.length; i++) {
+      p.push(rclient.getAsync(ns[i]._id))
+    }
+    let nsp = await Promise.all(p)
+
+    res.json({
+      success: true,
+      data: ns.map((e, i) => {
+        try {
+          let arr = nsp[i].split(' ')
+          return Object.assign(e, {
+            now: {
+              temp: +arr[0],
+              hum: +arr[1],
+              pm2: +arr[2],
+              lastUpdated: +arr[3] || 0
+            }
+          })
+        } catch (ex) {
+          return Object.assign(e, {
+            now: {}
+          })
+        }
+      })
+    })
+
+  })
+
+});
+
 
 
 router.post('/', (req, res, next) => {

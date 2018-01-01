@@ -19,7 +19,11 @@ var NodeSchema = new Schema({
 		created: Date
 	}],
 	connected: Boolean,
-	isPrivate: Boolean
+	isPrivate: Boolean,
+	node_type: {
+		type: Number,
+		default: 1//tbdo,2 tb dk
+	}
 }, { strict: false });
 
 NodeSchema.post('find', (err, doc, next) => {
