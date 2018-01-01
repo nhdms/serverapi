@@ -101,7 +101,9 @@ router.post('/add', isVerifyToken, (req, res, next) => {
             $addToSet: {
               owner_nodeIds: req.body.nodeid
             }
-          }, () => {
+          }, (err, user) => {
+            console.log(err)
+            console.log(user)
             res.json({
               success: true,
               data: node
