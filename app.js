@@ -99,6 +99,7 @@ app.use((req, res, next) => {
 
       }
     } catch (ez) {
+      console.log(ez)
       return res.status(403).json({
         success: false,
         message: 'No token provided.'
