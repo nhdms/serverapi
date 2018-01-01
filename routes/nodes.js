@@ -33,7 +33,7 @@ router.get('/unfollow', (req, res, next) => {
   var deviceId = req.query.deviceId;
   Following.remove({
     uid: uid,
-    nodeid: deviceId
+    nodeId: deviceId
   }, (e, r) => {
     if (e) return res.json({
       success: false,
@@ -161,7 +161,7 @@ router.use('/follow', isVerifyToken, (req, res, next) => {
 
   Following.find({
     uid: uid,
-    nodeid: deviceId
+    nodeId: deviceId
   }, (e, r) => {
     // console.log(e, r);
     if (e) return res.json({
@@ -228,7 +228,7 @@ router.get('/follow', isVerifyToken, (req, res, next) => {
       // });
       var follow = new Following({
         uid: uid,
-        nodeid: deviceId
+        nodeId: deviceId
       });
 
       follow.save((er, r) => {
@@ -308,6 +308,7 @@ router.get('/infos', isVerifyToken, async (req, res, next) => {
     var nodeIds = follows.map((f) => {
       return f.nodeId
     })
+    console.log(follows)
     var ns = await Nodes.find({ _id: { $in: nodeIds }, node_type: 1 }).lean()
     let p = []
     for (let i = 0; i < ns.length; i++) {
