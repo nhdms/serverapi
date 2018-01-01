@@ -46,7 +46,7 @@ router.get('/unfollow', (req, res, next) => {
   });
 });
 
-router.post('/nodes/new_node', (req, res, next) => {
+router.post('/new_node', (req, res, next) => {
   var node = new Nodes({
     _id: req.body.nodeid,
     password: req.body.password,
@@ -54,12 +54,12 @@ router.post('/nodes/new_node', (req, res, next) => {
   })
   node.save((err) => {
     if (err) {
-      req.json({
+      res.json({
         success: false,
         message: err.toString()
       })
     } else {
-      req.json({
+      res.json({
         success: true,
         data: node
       })
@@ -68,7 +68,7 @@ router.post('/nodes/new_node', (req, res, next) => {
 });
 
 //api thêm node
-router.post('/nodes/add', (req, res, next) => {
+router.post('/add', (req, res, next) => {
   Nodes.findOneAndUpdate({
     _id: req.body.nodeid,
     password: req.body.password,
@@ -84,12 +84,12 @@ router.post('/nodes/add', (req, res, next) => {
       }
     }, (err, node) => {
       if (err) {
-        req.json({
+        res.json({
           success: false,
           message: err.toString()
         })
       } else if (!node) {
-        req.json({
+        res.json({
           success: false,
           message: "Không tồn tại thiết bị"
         })
@@ -100,7 +100,7 @@ router.post('/nodes/add', (req, res, next) => {
               owner_nodeIds: req.body.nodeid
             }
           }, () => {
-            req.json({
+            res.json({
               success: true,
               data: node
             })
@@ -109,10 +109,10 @@ router.post('/nodes/add', (req, res, next) => {
     })
 })
 
-router.get('/nodes/owner', (req, res) => {
+router.get('/owner', (req, res) => {
   Users.findById(req.decoded._doc._id, (err, user) => {
     if (!user) {
-      req.json({
+      res.json({
         success: false
       })
     } else {
@@ -122,7 +122,7 @@ router.get('/nodes/owner', (req, res) => {
         }
       }, (err, nodes) => {
         if (!nodes) {
-          req.json({
+          res.json({
             success: false
           })
         } else {
