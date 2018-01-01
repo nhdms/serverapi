@@ -59,7 +59,7 @@ app.set('superSecret', config.secret);
 mongoose.connect(config.dbURL, config.dbOptions)
 mongoose.Promise = global.Promise
 
-const allowPaths = ['/', '/users', '/nodes']
+const allowPaths = []
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
