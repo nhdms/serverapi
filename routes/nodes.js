@@ -435,6 +435,8 @@ function isVerifyToken(req, res, next) {
         message: 'No token provided.'
       });
     }
+  } catch (err) {
+
   }
 }
 
