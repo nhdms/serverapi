@@ -89,7 +89,7 @@ app.use((req, res, next) => {
         });
 
       } else {
-
+        console.log("acbd")
         // if there is no token
         // return an error
         return res.status(403).json({
