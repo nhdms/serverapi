@@ -59,19 +59,18 @@ app.set('superSecret', config.secret);
 mongoose.connect(config.dbURL, config.dbOptions)
 mongoose.Promise = global.Promise
 
-const allowPaths = []
+const allowPaths = ['/', '/users']
 app.use((req, res, next) => {
+  console.log(app.get('superSecret'))
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', true);
-  console.log(req.query)
   if ('OPTIONS' !== req.method && req.url !== "/" && allowPaths.filter((i) => {
     return req.url.startsWith(i)
   }).length == 0) {
     try {
       var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
-      console.log(token)
       if (token) {
         // verifies secret and checks exp
         jwt.verify(token, app.get('superSecret'), function (err, decoded) {
@@ -89,7 +88,6 @@ app.use((req, res, next) => {
         });
 
       } else {
-        console.log("acbd")
         // if there is no token
         // return an error
         return res.status(403).json({

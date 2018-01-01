@@ -18,6 +18,8 @@ bluebird.promisifyAll(redis.Multi.prototype);
 /* GET users listing. */
 // router.post('')
 
+var jwt = require('jsonwebtoken');
+
 router.get('/', function (req, res, next) {
   // res.send('respond with a resource');
   res.json({
@@ -405,5 +407,35 @@ router.put('/', async (req, res, next) => {
     })
   }
 })
+
+
+function isVerifyToken(req, res, next) {
+  try {
+    var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+    if (token) {
+      // verifies secret and checks exp
+      jwt.verify(token, 'acse', function (err, decoded) {
+        if (err) {
+          return res.json({
+            success: false,
+            message: 'Failed to authenticate token.'
+          });
+        } else {
+          // if everything is good, save to request for use in other routes
+          req.decoded = decoded;
+          console.log(decoded);
+          next();
+        }
+      });
+    } else {
+      // if there is no token
+      // return an error
+      return res.status(403).json({
+        success: false,
+        message: 'No token provided.'
+      });
+    }
+  }
+}
 
 module.exports = router;
