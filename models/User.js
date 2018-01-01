@@ -20,7 +20,7 @@ var UserSchema = new Schema({
     roles: [String],
     fcm_token: String,
     owner_nodeIds: [{
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'Node'
     }]
 });
