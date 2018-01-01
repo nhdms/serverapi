@@ -29,7 +29,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/unfollow', (req, res, next) => {
-  var uid = req.decoded._doc._id;
+  var uid = req.decoded._id;
   var deviceId = req.query.deviceId;
   Following.remove({
     uid: uid,
@@ -97,7 +97,7 @@ router.post('/add', isVerifyToken, (req, res, next) => {
         })
       } else {
         Users.findOneAndUpdate(
-          req.decoded._doc._id, {
+          req.decoded._id, {
             $addToSet: {
               owner_nodeIds: req.body.nodeid
             }
@@ -112,7 +112,7 @@ router.post('/add', isVerifyToken, (req, res, next) => {
 })
 
 router.get('/owner', isVerifyToken, (req, res) => {
-  Users.findById(req.decoded._doc._id, (err, user) => {
+  Users.findById(req.decoded._id, (err, user) => {
     if (!user) {
       res.json({
         success: false
@@ -153,7 +153,7 @@ router.get('/nodes', (req, res, next) => {
 });
 
 router.use('/follow', isVerifyToken, (req, res, next) => {
-  var uid = req.decoded._doc._id;
+  var uid = req.decoded._id;
   // var check = new ObjectId(uid);
   var deviceId = req.query.deviceId;
   Following.find({
@@ -207,7 +207,7 @@ router.get('/follow', (req, res, next) => {
   // res.json();
   try {
     // var check = new ObjectId(req.de)
-    var uid = req.decoded._doc._id;
+    var uid = req.decoded._id;
     var check = new ObjectId(uid);
     var deviceId = req.query.deviceId;
     // res.json(deviceId);
