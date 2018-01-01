@@ -411,10 +411,10 @@ router.put('/', async (req, res, next) => {
 
 function isVerifyToken(req, res, next) {
   try {
-    var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+    var token = req.query.token || req.body.token || req.headers['x-access-token'] || req.headers['authorization'];
     if (token) {
       // verifies secret and checks exp
-      jwt.verify(token, 'acse', function (err, decoded) {
+      jwt.verify(token, 'ABC', function (err, decoded) {
         if (err) {
           return res.json({
             success: false,
@@ -436,7 +436,11 @@ function isVerifyToken(req, res, next) {
       });
     }
   } catch (err) {
-
+    console.log(err)
+    return res.status(403).json({
+      success: false,
+      message: 'No token provided.'
+    });
   }
 }
 
