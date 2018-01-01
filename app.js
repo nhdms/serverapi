@@ -70,7 +70,7 @@ app.use((req, res, next) => {
     return req.url.startsWith(i)
   }).length == 0) {
     try {
-      var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+      var token = req.query.token || req.body.token || req.headers['x-access-token'] || req.headers['authorization'];
       if (token) {
         // verifies secret and checks exp
         jwt.verify(token, app.get('superSecret'), function (err, decoded) {
