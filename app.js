@@ -71,6 +71,7 @@ app.use((req, res, next) => {
   }).length == 0) {
     try {
       var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+      console.log(token)
       if (token) {
         // verifies secret and checks exp
         jwt.verify(token, app.get('superSecret'), function (err, decoded) {
